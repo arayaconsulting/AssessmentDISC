@@ -1,40 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap');
 :root { --araya-blue: #1A237E; --text-dark: #212121; }
-body { font-family: 'Montserrat', sans-serif; background: #eceff1; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-.container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); width: 90%; max-width: 550px; text-align: center; }
+body { font-family: 'Montserrat', sans-serif; background: #eceff1; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+.container { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 600px; text-align: center; }
 .hidden { display: none; }
-.brand-header { font-weight: 800; color: var(--araya-blue); letter-spacing: 2px; }
-.instruction-box { background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: left; margin: 15px 0; font-size: 13px; border-left: 4px solid var(--araya-blue); }
-input[type="text"] { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; box-sizing: border-box; }
-button { background: var(--araya-blue); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: 600; }
-.radio-labels { display: grid; grid-template-columns: 50px 50px 1fr; gap: 10px; font-weight: bold; margin: 15px 0 10px; color: var(--araya-blue); }
-.option-row { display: grid; grid-template-columns: 50px 50px 1fr; gap: 10px; align-items: center; border-bottom: 1px solid #eee; padding: 8px 0; }
-.option-text { text-align: left; font-size: 13px; }
-.progress-bar-container { background: #eee; height: 8px; border-radius: 4px; margin-bottom: 20px; }
+.brand-header { font-weight: 800; color: var(--araya-blue); letter-spacing: 3px; margin-bottom: 10px; }
+.instruction-box { background: #f0f4f8; padding: 20px; border-radius: 10px; text-align: left; margin: 20px 0; border-left: 5px solid var(--araya-blue); font-size: 14px; }
+input[type="text"] { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 20px; box-sizing: border-box; font-size: 16px; text-align: center; }
+button { background: var(--araya-blue); color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; width: 100%; font-weight: 700; }
+
+/* QUIZ LAYOUT */
+.radio-labels { display: grid; grid-template-columns: 60px 60px 1fr; gap: 15px; font-weight: 800; margin: 20px 0 10px; color: var(--araya-blue); border-bottom: 2px solid #eee; padding-bottom: 5px; }
+.option-row { display: grid; grid-template-columns: 60px 60px 1fr; gap: 15px; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+.option-text { text-align: left; font-size: 13px; color: #444; }
+.progress-bar-container { background: #eee; height: 10px; border-radius: 5px; margin: 15px 0; overflow: hidden; }
 #progress-bar { background: var(--araya-blue); height: 100%; width: 0%; transition: 0.3s; }
 .btn-download { background: #2e7d32; margin-top: 15px; }
 .btn-outline { background: white; color: var(--araya-blue); border: 2px solid var(--araya-blue); margin-top: 10px; }
 
 /* CERTIFICATE PDF STYLING */
-.cert-page { width: 1120px; height: 792px; background: white; padding: 30px; box-sizing: border-box; border: 15px solid var(--araya-blue); position: relative; color: var(--text-dark); }
-.cert-border { border: 1px solid #ddd; height: 100%; padding: 25px; box-sizing: border-box; display: flex; flex-direction: column; }
-.cert-header { text-align: center; margin-bottom: 10px; }
-.araya-logo { color: var(--araya-blue); font-weight: 800; font-size: 28px; line-height: 1; }
-.logo-tagline { font-size: 10px; color: #666; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
-.cert-main-title { font-size: 16px; letter-spacing: 4px; margin: 15px 0 5px; border-bottom: 1px solid #eee; display: inline-block; padding-bottom: 3px; }
-#cert-user-name { font-size: 48px; color: var(--araya-blue); margin: 5px 0; font-family: 'Times New Roman', serif; text-transform: uppercase; }
-.type-badge { background: var(--araya-blue); color: white; padding: 6px 25px; border-radius: 4px; display: inline-block; font-size: 18px; font-weight: bold; }
-.cert-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 15px; flex-grow: 1; }
-.cert-col { font-size: 11px; text-align: left; line-height: 1.4; }
-.info-section strong { color: var(--araya-blue); display: block; margin-bottom: 3px; font-size: 12px; }
-.info-section { margin-bottom: 12px; }
+.cert-page { width: 1120px; height: 792px; background: white; padding: 40px; box-sizing: border-box; border: 20px solid var(--araya-blue); position: relative; color: var(--text-dark); overflow: hidden; }
+.cert-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-30deg); font-size: 80px; font-weight: 800; color: rgba(26, 35, 126, 0.03); white-space: nowrap; pointer-events: none; z-index: 0; }
+.cert-border { border: 2px solid #eee; height: 100%; padding: 30px; box-sizing: border-box; display: flex; flex-direction: column; position: relative; z-index: 1; }
+.araya-logo { color: var(--araya-blue); font-weight: 800; font-size: 28px; line-height: 1; margin-bottom: 5px; text-align: center; }
+.logo-tagline { font-size: 10px; color: #777; letter-spacing: 2px; text-transform: uppercase; text-align: center; }
+.cert-main-title { font-size: 18px; letter-spacing: 5px; margin: 20px 0 10px; border-bottom: 1px solid #ddd; display: inline-block; padding-bottom: 5px; color: #555; width: 100%; text-align: center; }
+#cert-user-name { font-size: 56px; color: var(--araya-blue); margin: 5px 0; font-family: 'Times New Roman', serif; text-align: center; text-transform: uppercase; border-bottom: 2px solid var(--araya-blue); display: inline-block; padding: 0 40px; }
+.type-badge { background: var(--araya-blue); color: white; padding: 10px 40px; border-radius: 5px; display: block; width: fit-content; margin: 15px auto; font-size: 22px; font-weight: bold; }
+
+.cert-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; margin-top: 20px; flex-grow: 1; }
+.cert-col { font-size: 12px; text-align: left; line-height: 1.5; }
+.info-section strong { color: var(--araya-blue); display: block; margin-bottom: 5px; font-size: 13px; }
+.info-section { margin-bottom: 15px; }
 .cert-col-center { text-align: center; }
-.chart-label { font-size: 11px; font-weight: bold; color: var(--araya-blue); margin-bottom: 10px; }
-canvas { max-width: 100%; height: auto; max-height: 250px; }
-.insight-box { background: #f9f9f9; padding: 12px; border-radius: 5px; }
-.insight-item { margin-bottom: 8px; }
-.insight-item strong { color: var(--araya-blue); display: block; }
-.cert-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; }
-.cert-id { font-size: 9px; color: #aaa; }
-.signature-area { text-align: center; width: 220px; }
+.chart-label { font-size: 12px; font-weight: bold; color: var(--araya-blue); margin-bottom: 15px; }
+canvas { max-width: 100%; max-height: 250px; }
+.insight-box { background: #fcfcfc; padding: 15px; border: 1px solid #f0f0f0; border-radius: 8px; }
+.insight-item strong { color: var(--araya-blue); display: block; margin-bottom: 2px; }
+
+.cert-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; padding-top: 20px; }
+.cert-id-box { font-size: 11px; color: #888; text-align: left; }
+.signature-area { text-align: center; width: 250px; }
 .sig-line { border-top: 2px solid var(--araya-blue); margin-bottom: 5px; }
