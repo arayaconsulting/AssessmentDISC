@@ -26,42 +26,10 @@ const quizQuestions = [
 ];
 
 const discData = {
-    "D": {
-        name: "Dominance (Kuat Choleris)",
-        karakter: "Individu dengan profil D tinggi adalah penggerak yang berorientasi pada hasil dan efisiensi. Anda memiliki motivasi internal yang kuat untuk mengontrol lingkungan dan menaklukkan tantangan. Anda cenderung praktis, mandiri, dan berani mengambil risiko demi visi besar.",
-        kekuatan: "Mampu mengambil keputusan sulit secara instan, gigih dalam hambatan, dan percaya diri tinggi. Anda adalah 'eksekutor' yang memastikan proyek tidak hanya sekadar rencana.",
-        saran: "Berlatihlah untuk menurunkan tempo agar bisa mendengarkan perspektif tim. Fokus pada kecerdasan emosional agar ketegasan tidak dianggap intimidasi.",
-        lead: "Pemimpin visioner yang fokus pada target (Bottom-line oriented). Efektif dalam krisis.",
-        work: "Handal dalam proyek baru dan lingkungan otonomi tinggi. Hindari rutinitas lambat.",
-        komunikasi: "Bicara langsung ke inti (to-the-point). Fokus pada hasil akhir dan berikan opsi solusi."
-    },
-    "I": {
-        name: "Influence (Kuat Sanguine)",
-        karakter: "Pribadi yang hangat, penuh energi, dan memiliki kemampuan interpersonal luar biasa. Anda mampu membangun antusiasme tim dan mahir memengaruhi orang lain melalui ide kreatif.",
-        kekuatan: "Persuasif, mampu mencairkan suasana, dan optimis. Anda adalah 'perekat sosial' yang memastikan tim merasa termotivasi secara emosional.",
-        saran: "Tingkatkan disiplin manajemen waktu dan detail administrasi. Pastikan ide kreatif diikuti rencana aksi konkret.",
-        lead: "Pemimpin demokratis, inspiratif, dan suportif. Memimpin dengan membangun hubungan personal.",
-        work: "Produktif dalam kolaborasi, presentasi, dan jejaring. Membutuhkan variasi tugas.",
-        komunikasi: "Gunakan pendekatan hangat dan santai. Berikan ruang bagi ide mereka, hindari data kaku di awal."
-    },
-    "S": {
-        name: "Steadiness (Kuat Phlegmatic)",
-        karakter: "Pilar pendukung organisasi yang tenang dan stabil. Menghargai kerja sama tim, kesetiaan, dan stabilitas. Anda adalah penyeimbang di tengah dinamika kelompok yang tinggi.",
-        kekuatan: "Sabar, pendengar baik, dan sangat kooperatif. Mampu menjaga harmoni tim jangka panjang dan fokus pada proses berkelanjutan.",
-        saran: "Berlatihlah keluar dari zona nyaman. Jangan ragu menyuarakan kebutuhan secara langsung agar masalah tidak tertumpuk.",
-        lead: "Pemimpin yang melayani (Servant Leader). Memastikan tim merasa aman dan memiliki sumber daya cukup.",
-        work: "Aset stabilitas operasional. Bagus dalam peran ketekunan dan dukungan teknis.",
-        komunikasi: "Bicara tenang dan ramah. Berikan waktu untuk proses informasi, hindari sikap konfrontatif."
-    },
-    "C": {
-        name: "Compliance (Kuat Melancholic)",
-        karakter: "Analitis, objektif, dan perfeksionis terhadap kualitas. Mendasarkan keputusan pada fakta. Menghargai struktur, aturan, dan ketepatan tinggi dalam segala hal.",
-        kekuatan: "Standar akurasi tinggi, perencanaan detail, dan analisis risiko mendalam. Memastikan kualitas tanpa cacat.",
-        saran: "Lebih fleksibel terhadap kesalahan non-strategis. Hindari 'analysis paralysis' dan komunikasikan kritik dengan lembut.",
-        lead: "Pemimpin berbasis sistem. Memimpin dengan contoh kualitas dan jalur prosedur yang benar.",
-        work: "Ahli manajemen kualitas, keuangan, riset, dan sistem logika tinggi.",
-        komunikasi: "Sediakan data akurat dan penjelasan logis. Gunakan pendekatan formal dan terstruktur."
-    }
+    "D": { name: "Dominance", karakter: "Individu dengan profil Dominance tinggi adalah penggerak yang berorientasi pada hasil dan efisiensi. Memiliki motivasi internal kuat untuk menaklukkan tantangan secara mandiri.", kekuatan: "Cepat mengambil keputusan sulit, gigih dalam hambatan, dan berani mengambil risiko besar.", saran: "Fokus pada kecerdasan emosional agar ketegasan tidak dianggap intimidasi oleh tim.", lead: "Pemimpin visioner yang fokus pada target akhir. Efektif dalam krisis.", work: "Eksekutor handal dalam proyek baru dengan otonomi tinggi.", komunikasi: "Bicara langsung ke inti (to-the-point) dan fokus pada hasil akhir solusi." },
+    "I": { name: "Influence", karakter: "Pribadi hangat, penuh energi, dan persuasif. Memiliki kemampuan alami membangun antusiasme tim melalui ide-ide kreatif.", kekuatan: "Komunikator hebat, mampu memotivasi orang lain, dan menciptakan atmosfer kerja menyenangkan.", saran: "Tingkatkan disiplin manajemen waktu dan pastikan ide kreatif diikuti rencana aksi konkret.", lead: "Pemimpin inspiratif yang memimpin dengan membangun hubungan personal.", work: "Produktif dalam kolaborasi, presentasi, dan jejaring.", komunikasi: "Gunakan pendekatan hangat dan santai. Berikan ruang bagi mereka untuk berekspresi." },
+    "S": { name: "Steadiness", karakter: "Pilar pendukung organisasi yang tenang, stabil, dan setia. Menghargai harmoni, stabilitas, dan konsistensi jangka panjang.", kekuatan: "Sabar, pendengar sangat baik, dan mampu menjaga stabilitas tim di tengah dinamika tinggi.", saran: "Berlatihlah menyuarakan pendapat secara langsung dan lebih terbuka terhadap perubahan.", lead: "Pemimpin melayani (Servant Leader). Menjaga keamanan dan kenyamanan anggota tim.", work: "Pekerja tim loyal yang bagus dalam peran dukungan teknis dan operasional.", komunikasi: "Bicara tenang dan ramah. Berikan waktu untuk memproses informasi tanpa desakan." },
+    "C": { name: "Compliance", karakter: "Individu analitis yang mendasarkan keputusan pada data dan fakta. Menghargai struktur, aturan, dan akurasi tinggi.", kekuatan: "Standar akurasi sangat tinggi, detail dalam perencanaan, dan analisis risiko mendalam.", saran: "Jangan terjebak dalam 'analysis paralysis' dan lebih fleksibel terhadap kesalahan kecil.", lead: "Pemimpin berbasis sistem yang memastikan organisasi berjalan di atas jalur prosedur benar.", work: "Ahli manajemen risiko, quality control, dan perencanaan strategis kompleks.", komunikasi: "Sediakan data akurat dan penjelasan logis. Gunakan pendekatan formal terstruktur." }
 };
 
 let currentIdx = 0;
@@ -83,7 +51,7 @@ function showQ() {
     const q = quizQuestions[currentIdx];
     document.getElementById('question-text').textContent = `Pertanyaan ${currentIdx+1}/${quizQuestions.length}`;
     const cont = document.getElementById('options-container');
-    cont.innerHTML = '';
+    cont.innerHTML = `<div class="radio-labels"><span>Paling</span><span>Bukan</span><span>Pernyataan</span></div>`;
     q.options.forEach(opt => {
         const d = document.createElement('div');
         d.className = 'option-row';
@@ -110,9 +78,8 @@ function showResult() {
         let final = scores[t] - scoresLeast[t];
         if(final > max) { max = final; dom = t; }
     }
-    document.getElementById('result-title').textContent = `Dominan: ${discData[dom].name}`;
+    document.getElementById('result-title').textContent = `Profil Dominan: ${discData[dom].name}`;
     
-    // Setup Chart
     const ctx = document.getElementById('discRadarChart').getContext('2d');
     if(radarChart) radarChart.destroy();
     radarChart = new Chart(ctx, {
@@ -121,7 +88,7 @@ function showResult() {
             labels: ['Dominance', 'Influence', 'Steadiness', 'Compliance'],
             datasets: [{
                 data: [scores.D, scores.I, scores.S, scores.C],
-                backgroundColor: 'rgba(26, 35, 126, 0.2)',
+                backgroundColor: 'rgba(26, 35, 126, 0.1)',
                 borderColor: '#1A237E',
                 borderWidth: 2,
                 pointRadius: 4,
@@ -131,7 +98,6 @@ function showResult() {
         options: { scales: { r: { suggestMin: 0, ticks: { display: false } } }, plugins: { legend: { display: false } } }
     });
 
-    // Populate Cert Data
     document.getElementById('cert-user-name').textContent = userName;
     document.getElementById('cert-type-name').textContent = discData[dom].name;
     document.getElementById('desc-karakteristik').textContent = discData[dom].karakter;
@@ -140,14 +106,14 @@ function showResult() {
     document.getElementById('insight-lead').textContent = discData[dom].lead;
     document.getElementById('insight-work').textContent = discData[dom].work;
     document.getElementById('desc-komunikasi').textContent = discData[dom].komunikasi;
-    document.getElementById('cert-date-id').textContent = new Date().getTime().toString().slice(-6);
+    document.getElementById('cert-id-val').textContent = "ARAYA-DISC-" + Math.floor(10000 + Math.random() * 90000);
 }
 
 document.getElementById('download-cert').addEventListener('click', () => {
     const el = document.getElementById('certificate-template');
     el.style.display = 'block';
     html2pdf().from(el).set({
-        margin: 0, filename: `Asesmen_DISC_${userName}.pdf`,
+        margin: 0, filename: `Sertifikat_DISC_${userName}.pdf`,
         html2canvas: { scale: 2 }, jsPDF: { format: 'a4', orientation: 'landscape' }
     }).save().then(() => el.style.display = 'none');
 });
