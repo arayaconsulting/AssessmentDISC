@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DISC Profile - Araya Consulting</title>
+    <title>DISC Assessment - Araya Consulting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -11,12 +11,15 @@
 </head>
 <body>
     <div class="container" id="intro-container">
-        <img src="logo.png" alt="Araya Consulting Logo" class="main-logo">
+        <div class="logo-box">
+            <img src="logo.png" alt="Araya Consulting Logo" class="app-logo">
+        </div>
         <h1>Asesmen Kepribadian DISC</h1>
         <div class="instruction-box">
             <h3>Cara Pengisian:</h3>
             <p>1. Pilih satu yang <strong>Paling</strong> menggambarkan Anda.</p>
             <p>2. Pilih satu yang <strong>Bukan</strong> menggambarkan Anda.</p>
+            <p>3. Pilihan "Paling" dan "Bukan" harus berbeda.</p>
         </div>
         <form id="start-form">
             <input type="text" id="user-name" placeholder="Masukkan Nama Lengkap" required>
@@ -34,6 +37,7 @@
     </div>
 
     <div class="container hidden" id="result-container">
+        <div class="brand-header">HASIL ANALISIS</div>
         <h2 id="result-title"></h2>
         <div class="button-group">
             <button id="download-cert" class="btn-download">Unduh Sertifikat PDF</button>
@@ -46,7 +50,7 @@
             <div class="cert-watermark">ARAYA CONSULTING</div>
             <div class="cert-border">
                 <div class="cert-header">
-                    <img src="logo.png" alt="Logo" class="cert-logo">
+                    <img src="logo.png" alt="Logo" class="cert-logo-img">
                     <div class="cert-main-title">CERTIFICATE OF PERSONALITY ANALYSIS</div>
                     <p style="margin: 5px 0; font-size: 13px;">Sertifikat ini diberikan kepada:</p>
                     <h1 id="cert-user-name">NAMA LENGKAP</h1>
@@ -82,7 +86,7 @@
                     </div>
                     <div class="signature-area">
                         <p style="font-size: 11px; margin-bottom: 5px;">Consultant,</p>
-                        <img src="ttd.png" alt="Tanda Tangan" class="cert-ttd">
+                        <img src="ttd.png" alt="TTD" class="cert-ttd-img">
                         <div class="sig-line"></div>
                         <p><strong>Ali Mahfud</strong></p>
                         <p style="font-size: 10px;">FOUNDER ARAYA CONSULTING</p>
