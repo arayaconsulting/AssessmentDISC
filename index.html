@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DISC Assessment - Araya Consulting</title>
+    <title>DISC Profile - Araya Consulting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -11,19 +11,17 @@
 </head>
 <body>
     <div class="container" id="intro-container">
-        <div class="logo-box">
-            <img src="logo.png" alt="Araya Consulting Logo" class="app-logo">
-        </div>
+        <img src="logo.png" alt="Araya Consulting" class="main-logo">
         <h1>Asesmen Kepribadian DISC</h1>
         <div class="instruction-box">
             <h3>Cara Pengisian:</h3>
             <p>1. Pilih satu yang <strong>Paling</strong> menggambarkan Anda.</p>
             <p>2. Pilih satu yang <strong>Bukan</strong> menggambarkan Anda.</p>
-            <p>3. Pilihan "Paling" dan "Bukan" harus berbeda.</p>
+            <p>3. Pilihan "Paling" dan "Bukan" harus pada pernyataan yang berbeda.</p>
         </div>
         <form id="start-form">
             <input type="text" id="user-name" placeholder="Masukkan Nama Lengkap" required>
-            <button type="submit">Mulai Tes Sekarang</button>
+            <button type="submit" class="btn-primary">Mulai Analisis Sekarang</button>
         </form>
     </div>
 
@@ -32,13 +30,14 @@
         <div class="progress-bar-container"><div id="progress-bar"></div></div>
         <form id="quiz-form">
             <div id="options-container"></div>
-            <button type="submit">Selanjutnya</button>
+            <button type="submit" class="btn-primary">Selanjutnya</button>
         </form>
     </div>
 
     <div class="container hidden" id="result-container">
-        <div class="brand-header">HASIL ANALISIS</div>
+        <div class="brand-header">ARAYA CONSULTING</div>
         <h2 id="result-title"></h2>
+        <p>Analisis kepribadian Anda telah siap. Silakan unduh sertifikat resmi di bawah ini.</p>
         <div class="button-group">
             <button id="download-cert" class="btn-download">Unduh Sertifikat PDF</button>
             <button onclick="location.reload()" class="btn-outline">Ulangi Tes</button>
@@ -52,7 +51,7 @@
                 <div class="cert-header">
                     <img src="logo.png" alt="Logo" class="cert-logo-img">
                     <div class="cert-main-title">CERTIFICATE OF PERSONALITY ANALYSIS</div>
-                    <p style="margin: 5px 0; font-size: 13px;">Sertifikat ini diberikan kepada:</p>
+                    <p style="margin: 5px 0; font-size: 14px;">Sertifikat ini diberikan kepada:</p>
                     <h1 id="cert-user-name">NAMA LENGKAP</h1>
                     <div class="type-badge">Tipe Dominan: <span id="cert-type-name">Dominance</span></div>
                 </div>
@@ -73,8 +72,8 @@
                             <div class="insight-item"><strong>Gaya Kepemimpinan:</strong><p id="insight-lead"></p></div>
                             <div class="insight-item"><strong>Gaya Kerja & Kolaborasi:</strong><p id="insight-work"></p></div>
                         </div>
-                        <div class="insight-box" style="margin-top: 10px; border-top: 2px solid #1A237E; padding-top: 8px;">
-                            <strong>Panduan Komunikasi:</strong><p id="desc-komunikasi" style="font-size: 11px;"></p>
+                        <div class="insight-box" style="margin-top: 10px; border-top: 2px solid #1A237E; padding-top: 10px;">
+                            <strong>Panduan Komunikasi:</strong><p id="desc-komunikasi"></p>
                         </div>
                     </div>
                 </div>
@@ -85,8 +84,8 @@
                         <p>araya-consulting.github.io</p>
                     </div>
                     <div class="signature-area">
-                        <p style="font-size: 11px; margin-bottom: 5px;">Consultant,</p>
-                        <img src="ttd.png" alt="TTD" class="cert-ttd-img">
+                        <p style="font-size: 11px; margin-bottom: 10px;">Consultant,</p>
+                        <img src="ttd.png" alt="TTD" class="cert-ttd">
                         <div class="sig-line"></div>
                         <p><strong>Ali Mahfud</strong></p>
                         <p style="font-size: 10px;">FOUNDER ARAYA CONSULTING</p>
