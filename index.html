@@ -17,7 +17,7 @@
         <img src="logo.png" alt="Logo Araya Consulting" class="logo">
         <h1>Asesmen Kepribadian DISC</h1>
         <form id="start-form">
-            <input type="text" id="user-name" placeholder="Masukkan Nama Lengkap" required>
+            <input type="text" id="user-name" placeholder="Nama Lengkap Anda" required>
             <button type="submit" id="start-button">Mulai Analisis</button>
         </form>
     </div>
@@ -25,13 +25,17 @@
     <div class="container hidden" id="quiz-container">
         <h2 id="question-text"></h2>
         <div class="progress-bar-container"><div id="progress-bar"></div></div>
-        <div id="options-container"></div>
-        <div id="quiz-nav">
-            <button id="next-button">Selanjutnya</button>
-        </div>
+        <form id="quiz-form">
+            <div class="radio-header">
+                <span>Paling</span><span>Bukan</span><span>Pernyataan</span>
+            </div>
+            <div id="options-container"></div>
+            <button type="submit" id="next-button">Selanjutnya</button>
+        </form>
     </div>
 
     <div class="container hidden" id="result-container">
+        <img src="logo.png" style="width: 80px; margin-bottom: 10px;">
         <h2 id="result-title"></h2>
         <p id="result-description"></p>
         <div class="button-group">
@@ -41,54 +45,53 @@
     </div>
 
     <div id="certificate-wrapper" style="position: absolute; left: -9999px; top: 0;">
-        <div id="cert-content" style="width: 1120px; height: 790px; padding: 30px 50px; background: #fff; border: 18px solid #1a2a6c; font-family: 'Poppins', sans-serif; color: #333; position: relative; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden;">
-            
-            <div style="position: absolute; top: 8px; left: 8px; right: 8px; bottom: 8px; border: 2px solid #c5a059; pointer-events: none;"></div>
-            
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.04; background-image: url('logo.png'); background-size: 140px; z-index: 0; pointer-events: none;"></div>
+        <div id="cert-content">
+            <div class="cert-gold-border"></div>
+            <div class="cert-watermark-bg"></div>
 
-            <div style="text-align: center; position: relative; z-index: 1; margin-bottom: 10px;">
-                <img src="logo.png" style="width: 155px;" crossorigin="anonymous">
-                <p style="margin: 5px 0 0 0; font-weight: 600; font-size: 11px; letter-spacing: 4px; color: #c5a059; text-transform: uppercase;">Certificate of Personality Analysis</p>
+            <div class="cert-header-section">
+                <img src="logo.png" class="cert-logo" crossorigin="anonymous">
+                <p class="cert-label-top">Certificate of Personality Analysis</p>
             </div>
             
-            <div style="text-align: center; position: relative; z-index: 1; margin-bottom: 10px;">
-                <p style="font-style: italic; font-size: 13px; margin: 0; color: #888;">Sertifikat ini diberikan kepada:</p>
-                <h2 id="cert-user-name" style="font-size: 44px; color: #1a2a6c; margin: 2px 0; font-family: 'serif'; font-weight: bold; text-transform: uppercase;"></h2>
-                <div style="display: inline-block; background: #1a2a6c; color: #fff; padding: 8px 35px; border-radius: 4px; border: 1px solid #c5a059;">
-                    <span style="font-size: 17px; font-weight: 600;">Tipe Dominan: <span id="cert-type" style="color: #c5a059;"></span></span>
+            <div class="cert-recipient-section">
+                <p class="cert-award-text">Sertifikat ini diberikan kepada:</p>
+                <h2 id="cert-user-name" class="cert-name-text"></h2>
+                <div class="cert-type-badge">
+                    <span>Tipe Dominan: <span id="cert-type"></span></span>
                 </div>
             </div>
 
-            <div style="display: flex; gap: 20px; position: relative; z-index: 1; flex-grow: 1; overflow: hidden; margin-bottom: 60px; margin-top: 40px;">
-                <div id="cert-col-left" style="flex: 1.1; border-right: 1px solid #eee; padding-right: 20px; font-size: 10px; line-height: 1.35; text-align: justify;"></div>
+            <div class="cert-main-grid">
+                <div id="cert-col-left" class="cert-column column-left"></div>
 
-                <div style="flex: 0.7; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 10px;">
-                    <h4 style="margin: 0 0 5px 0; font-size: 9px; color: #1a2a6c; text-transform: uppercase; font-weight:600;">Spektrum Karakter</h4>
-                    <canvas id="radarChart" width="220" height="220"></canvas>
+                <div class="cert-column column-center">
+                    <h4 class="spektrum-title">Spektrum Karakter</h4>
+                    <canvas id="radarChart" width="230" height="230"></canvas>
                 </div>
 
-                <div id="cert-col-right" style="flex: 1; font-size: 10px; line-height: 1.35; padding-left: 10px;"></div>
+                <div id="cert-col-right" class="cert-column column-right"></div>
             </div>
 
-            <div style="position: absolute; bottom: 45px; left: 50px; right: 50px; display: flex; justify-content: space-between; align-items: flex-end; z-index: 1;">
-                <div style="font-size: 9px; color: #999;">
-                    <p style="margin:0;">ID: <span id="cert-id" style="color:#333; font-weight:600;"></span></p>
-                    <p style="margin:0;">Tanggal: <span id="cert-date" style="color:#333;"></span></p>
-                    <p style="margin:0; color: #1a2a6c; font-weight: 600;">Araya Consulting - Your Growth Partner</p>
+            <div class="cert-footer-section">
+                <div class="cert-id-date">
+                    <p>ID: <span id="cert-id"></span></p>
+                    <p>Tanggal: <span id="cert-date"></span></p>
+                    <p class="footer-brand">Araya Consulting - Your Growth Partner</p>
                 </div>
                 
-                <div style="text-align: center; width: 230px; position: relative;">
-                    <p style="margin-bottom: 95px; font-size: 13px; color: #666; font-weight: 600;">Consultant,</p>
-                    <img src="ttd.png" id="cert-signature" style="width: 100px; position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 5;" crossorigin="anonymous">
-                    <div style="border-bottom: 1.5px solid #1a2a6c; display: inline-block; padding: 0 15px;">
-                        <p style="margin: 0; font-weight: bold; font-size: 19px; color: #1a2a6c;">Ali Mahfud</p>
+                <div class="cert-signature-box">
+                    <p class="sig-consultant">Consultant,</p>
+                    <img src="ttd.png" id="cert-signature" class="sig-image" crossorigin="anonymous">
+                    <div class="sig-line-box">
+                        <p class="sig-name">Ali Mahfud</p>
                     </div>
-                    <p style="margin: 2px 0 0 0; font-size: 9px; color: #c5a059; font-weight: 600; text-transform: uppercase;">Founder Araya Consulting</p>
+                    <p class="sig-founder">Founder Araya Consulting</p>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
