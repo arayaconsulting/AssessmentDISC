@@ -5,26 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DISC Profile - Araya Consulting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <div class="container" id="intro-container">
-        <div class="logo-wrapper">
-            <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="45" stroke="#1A237E" stroke-width="10"/>
-                <path d="M30 70L50 30L70 70" stroke="#1A237E" stroke-width="8" stroke-linecap="round"/>
-            </svg>
-            <div class="brand-header">ARAYA CONSULTING</div>
-        </div>
+        <img src="logo.png" alt="Araya Consulting Logo" class="main-logo">
         <h1>Asesmen Kepribadian DISC</h1>
         <div class="instruction-box">
             <h3>Cara Pengisian:</h3>
             <p>1. Pilih satu yang <strong>Paling</strong> menggambarkan Anda.</p>
             <p>2. Pilih satu yang <strong>Bukan</strong> menggambarkan Anda.</p>
-            <p>3. Pilihan "Paling" dan "Bukan" harus berbeda.</p>
         </div>
         <form id="start-form">
             <input type="text" id="user-name" placeholder="Masukkan Nama Lengkap" required>
@@ -42,7 +34,6 @@
     </div>
 
     <div class="container hidden" id="result-container">
-        <div class="brand-header">HASIL ANALISIS</div>
         <h2 id="result-title"></h2>
         <div class="button-group">
             <button id="download-cert" class="btn-download">Unduh Sertifikat PDF</button>
@@ -55,14 +46,7 @@
             <div class="cert-watermark">ARAYA CONSULTING</div>
             <div class="cert-border">
                 <div class="cert-header">
-                    <div class="cert-logo-box">
-                        <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="50" cy="50" r="45" stroke="#1A237E" stroke-width="10"/>
-                            <path d="M30 70L50 30L70 70" stroke="#1A237E" stroke-width="8" stroke-linecap="round"/>
-                        </svg>
-                        <div class="araya-logo-text">ARAYA CONSULTING</div>
-                        <div class="logo-tagline">Grow People, Grow Business</div>
-                    </div>
+                    <img src="logo.png" alt="Logo" class="cert-logo">
                     <div class="cert-main-title">CERTIFICATE OF PERSONALITY ANALYSIS</div>
                     <p style="margin: 5px 0; font-size: 13px;">Sertifikat ini diberikan kepada:</p>
                     <h1 id="cert-user-name">NAMA LENGKAP</h1>
@@ -97,7 +81,8 @@
                         <p>araya-consulting.github.io</p>
                     </div>
                     <div class="signature-area">
-                        <p style="font-size: 11px; margin-bottom: 25px;">Consultant,</p>
+                        <p style="font-size: 11px; margin-bottom: 5px;">Consultant,</p>
+                        <img src="ttd.png" alt="Tanda Tangan" class="cert-ttd">
                         <div class="sig-line"></div>
                         <p><strong>Ali Mahfud</strong></p>
                         <p style="font-size: 10px;">FOUNDER ARAYA CONSULTING</p>
