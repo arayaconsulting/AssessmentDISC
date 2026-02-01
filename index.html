@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DISC Assessment - Araya Consulting</title>
+    <title>DISC Profile - Araya Consulting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="style.css">
@@ -16,9 +16,9 @@
         <h1>Asesmen Kepribadian DISC</h1>
         <div class="instruction-box">
             <h3>Cara Pengisian:</h3>
-            <p>1. Pilih satu yang <strong>Paling</strong> menggambarkan diri Anda.</p>
-            <p>2. Pilih satu yang <strong>Bukan</strong> menggambarkan diri Anda.</p>
-            <p>3. Pilihan "Paling" dan "Bukan" harus pada pernyataan yang berbeda.</p>
+            <p>1. Pilih satu yang <strong>Paling</strong> menggambarkan Anda.</p>
+            <p>2. Pilih satu yang <strong>Bukan</strong> menggambarkan Anda.</p>
+            <p>3. Pilihan "Paling" dan "Bukan" harus berbeda.</p>
         </div>
         <form id="start-form">
             <input type="text" id="user-name" placeholder="Masukkan Nama Lengkap" required>
@@ -30,15 +30,13 @@
         <h2 id="question-text"></h2>
         <div class="progress-bar-container"><div id="progress-bar"></div></div>
         <form id="quiz-form">
-            <div class="radio-labels">
-                <span>Paling</span><span>Bukan</span><span>Pernyataan</span>
-            </div>
             <div id="options-container"></div>
             <button type="submit">Selanjutnya</button>
         </form>
     </div>
 
     <div class="container hidden" id="result-container">
+        <div class="brand-header">HASIL ANALISIS</div>
         <h2 id="result-title"></h2>
         <div class="button-group">
             <button id="download-cert" class="btn-download">Unduh Sertifikat PDF</button>
@@ -48,14 +46,15 @@
 
     <div id="certificate-template" style="display: none;">
         <div class="cert-page">
+            <div class="cert-watermark">ARAYA CONSULTING</div>
             <div class="cert-border">
                 <div class="cert-header">
                     <div class="araya-logo">ARAYA CONSULTING</div>
                     <div class="logo-tagline">Grow People, Grow Business</div>
                     <div class="cert-main-title">CERTIFICATE OF PERSONALITY ANALYSIS</div>
-                    <p style="margin: 5px 0; font-size: 12px;">Sertifikat ini diberikan kepada:</p>
+                    <p style="margin: 10px 0 5px; font-size: 14px;">Sertifikat ini diberikan kepada:</p>
                     <h1 id="cert-user-name">ALI MAHFUD</h1>
-                    <div class="type-badge">Tipe Dominan: <span id="cert-type-name">Kuat Choleric</span></div>
+                    <div class="type-badge">Tipe Dominan: <span id="cert-type-name">Dominance</span></div>
                 </div>
 
                 <div class="cert-grid">
@@ -81,9 +80,12 @@
                 </div>
 
                 <div class="cert-footer">
-                    <div class="cert-id">ID: ARAYA-DISC-<span id="cert-date-id"></span></div>
+                    <div class="cert-id-box">
+                        <p>ID: <span id="cert-id-val"></span></p>
+                        <p>araya-consulting.github.io</p>
+                    </div>
                     <div class="signature-area">
-                        <p style="font-size: 11px; margin-bottom: 30px;">Consultant,</p>
+                        <p style="font-size: 11px; margin-bottom: 40px;">Consultant,</p>
                         <div class="sig-line"></div>
                         <p><strong>Ali Mahfud</strong></p>
                         <p style="font-size: 10px;">FOUNDER ARAYA CONSULTING</p>
