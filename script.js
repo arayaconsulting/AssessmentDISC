@@ -1,4 +1,3 @@
-// Data Pertanyaan Lengkap (24 Butir)
 const quizQuestions = [
     { question: "1. Saat dihadapkan pada keputusan penting, saya cenderung:", options: [{ text: "Mengambil keputusan cepat dan tegas", type: "D" }, { text: "Berdiskusi dengan orang lain sebelum memutuskan", type: "I" }, { text: "Menimbang perasaan semua pihak terlebih dahulu", type: "S" }, { text: "Menganalisis data dan informasi sebelum memutuskan", type: "C" }] },
     { question: "2. Dalam menghadapi konflik, saya biasanya:", options: [{ text: "Menghadapinya secara langsung dan cepat", type: "D" }, { text: "Berusaha mencairkan suasana dengan humor", type: "I" }, { text: "Menenangkan semua orang agar tidak terjadi ketegangan", type: "S" }, { text: "Mengumpulkan fakta sebelum menyimpulkan", type: "C" }] },
@@ -27,24 +26,18 @@ const quizQuestions = [
 ];
 
 const discData = {
-    "D": { name: "Dominance", karakter: "Individu dengan profil Dominance tinggi adalah penggerak yang berorientasi pada hasil dan efisiensi. Memiliki motivasi internal kuat untuk menaklukkan tantangan secara mandiri.", kekuatan: "Cepat mengambil keputusan sulit, gigih dalam hambatan, dan berani mengambil risiko besar.", saran: "Fokus pada kecerdasan emosional agar ketegasan tidak dianggap intimidasi oleh tim.", lead: "Pemimpin visioner yang fokus pada target akhir (Bottom-line oriented). Efektif dalam krisis.", work: "Eksekutor handal dalam proyek baru dengan otonomi tinggi.", komunikasi: "Bicara langsung ke inti (to-the-point) dan fokus pada hasil akhir solusi." },
-    "I": { name: "Influence", karakter: "Pribadi hangat, penuh energi, dan persuasif. Memiliki kemampuan alami membangun antusiasme tim melalui ide-ide kreatif.", kekuatan: "Komunikator hebat, mampu memotivasi orang lain, dan menciptakan atmosfer kerja menyenangkan.", saran: "Tingkatkan disiplin manajemen waktu dan pastikan ide kreatif diikuti rencana aksi konkret.", lead: "Pemimpin inspiratif yang memimpin dengan membangun hubungan personal.", work: "Produktif dalam kolaborasi, presentasi, dan jejaring.", komunikasi: "Gunakan pendekatan hangat dan santai. Berikan ruang bagi mereka untuk berekspresi." },
-    "S": { name: "Steadiness", karakter: "Pilar pendukung organisasi yang tenang, stabil, dan setia. Menghargai harmoni, stabilitas, dan konsistensi jangka panjang.", kekuatan: "Sabar, pendengar sangat baik, dan mampu menjaga stabilitas tim di tengah dinamika tinggi.", saran: "Berlatihlah menyuarakan pendapat secara langsung dan lebih terbuka terhadap perubahan.", lead: "Pemimpin melayani (Servant Leader). Menjaga keamanan dan kenyamanan anggota tim.", work: "Pekerja tim loyal yang bagus dalam peran dukungan teknis dan operasional.", komunikasi: "Bicara tenang dan ramah. Berikan waktu untuk memproses informasi tanpa desakan." },
-    "C": { name: "Compliance", karakter: "Individu analitis yang mendasarkan keputusan pada data dan fakta. Menghargai struktur, aturan, dan akurasi tinggi.", kekuatan: "Standar akurasi sangat tinggi, detail dalam perencanaan, dan analisis risiko mendalam.", saran: "Jangan terjebak dalam 'analysis paralysis' dan lebih fleksibel terhadap kesalahan kecil.", lead: "Pemimpin berbasis sistem yang memastikan organisasi berjalan di atas jalur prosedur benar.", work: "Ahli manajemen risiko, quality control, dan perencanaan strategis kompleks.", komunikasi: "Sediakan data akurat dan penjelasan logis. Gunakan pendekatan formal terstruktur." }
+    "D": { name: "Dominance", karakter: "Anda adalah penggerak yang berorientasi hasil, tegas, dan independen. Motivasi internal Anda sangat kuat untuk menaklukkan tantangan.", kekuatan: "Cepat mengambil keputusan, gigih menghadapi hambatan, dan berani mengambil risiko besar.", saran: "Fokus pada empati agar ketegasan Anda tidak dianggap sebagai intimidasi oleh tim.", lead: "Pemimpin visioner yang fokus pada efektivitas. Sangat kuat dalam situasi krisis.", work: "Eksekutor handal dengan otonomi tinggi. Bagus untuk memimpin proyek baru.", komunikasi: "Langsung ke inti (to-the-point) dan fokus pada hasil akhir solusi." },
+    "I": { name: "Influence", karakter: "Anda hangat, penuh energi, dan persuasif. Kemampuan interpersonal Anda sangat membantu dalam memotivasi orang lain.", kekuatan: "Komunikator hebat, optimis, dan mampu membangun atmosfer kerja yang menyenangkan.", saran: "Tingkatkan disiplin waktu dan fokus pada detail penyelesaian rencana aksi konkret.", lead: "Pemimpin inspiratif yang memimpin melalui hubungan personal dan apresiasi.", work: "Produktif dalam kolaborasi dan presentasi. Membutuhkan variasi tugas.", komunikasi: "Pendekatan hangat dan santai. Berikan ruang bagi ide-ide kreatif mereka." },
+    "S": { name: "Steadiness", karakter: "Anda adalah pilar tim yang tenang, setia, dan konsisten. Anda sangat menghargai harmoni dan stabilitas.", kekuatan: "Sabar, pendengar yang baik, dan mampu menjaga stabilitas tim di tengah dinamika.", saran: "Beranilah menyuarakan kebutuhan Anda secara langsung dan terbuka terhadap perubahan.", lead: "Pemimpin yang melayani (Servant Leader). Menjaga keamanan anggota tim.", work: "Pekerja tim loyal yang bagus dalam peran dukungan teknis dan operasional.", komunikasi: "Bicara tenang dan ramah. Berikan waktu untuk mereka memproses informasi." },
+    "C": { name: "Compliance", karakter: "Anda analitis dan logis. Anda menghargai akurasi tinggi dan mendasarkan keputusan pada fakta serta sistem.", kekuatan: "Standar akurasi tinggi, perencanaan detail, dan analisis risiko mendalam.", saran: "Hindari 'analysis paralysis' (berpikir terlalu lama) dan lebih fleksibel terhadap kesalahan kecil.", lead: "Pemimpin berbasis sistem yang memastikan organisasi berjalan di atas jalur prosedur.", work: "Ahli manajemen risiko, quality control, dan perencanaan strategis kompleks.", komunikasi: "Sediakan data akurat dan penjelasan logis. Gunakan pendekatan formal terstruktur." }
 };
 
-let currentIdx = 0;
-let userName = "";
-let scores = { D: 0, I: 0, S: 0, C: 0 };
-let scoresLeast = { D: 0, I: 0, S: 0, C: 0 };
-let radarChart = null;
+let currentIdx = 0, userName = "", scores = { D: 0, I: 0, S: 0, C: 0 }, scoresLeast = { D: 0, I: 0, S: 0, C: 0 }, radarChart = null;
 
 document.getElementById('start-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    userName = document.getElementById('user-name').value;
+    e.preventDefault(); userName = document.getElementById('user-name').value;
     document.getElementById('intro-container').classList.add('hidden');
-    document.getElementById('quiz-container').classList.remove('hidden');
-    showQ();
+    document.getElementById('quiz-container').classList.remove('hidden'); showQ();
 });
 
 function showQ() {
@@ -54,46 +47,30 @@ function showQ() {
     const cont = document.getElementById('options-container');
     cont.innerHTML = `<div class="radio-labels"><span>Paling</span><span>Bukan</span><span>Pernyataan</span></div>`;
     q.options.forEach(opt => {
-        const d = document.createElement('div');
-        d.className = 'option-row';
+        const d = document.createElement('div'); d.className = 'option-row';
         d.innerHTML = `<input type="radio" name="m" value="${opt.type}" required><input type="radio" name="l" value="${opt.type}" required><span class="option-text">${opt.text}</span>`;
         cont.appendChild(d);
     });
+    document.getElementById('progress-bar').style.width = `${((currentIdx+1)/quizQuestions.length)*100}%`;
 }
 
 document.getElementById('quiz-form').addEventListener('submit', (e) => {
     e.preventDefault();
-    const m = document.querySelector('input[name="m"]:checked').value;
-    const l = document.querySelector('input[name="l"]:checked').value;
-    if (m === l) return alert("Pilihan 'Paling' dan 'Bukan' harus berbeda!");
-    scores[m]++; scoresLeast[l]++;
-    currentIdx++; showQ();
+    const m = document.querySelector('input[name="m"]:checked').value, l = document.querySelector('input[name="l"]:checked').value;
+    if (m === l) return alert("Pilihan Paling dan Bukan harus berbeda!");
+    scores[m]++; scoresLeast[l]++; currentIdx++; showQ();
 });
 
 function showResult() {
     document.getElementById('quiz-container').classList.add('hidden');
     document.getElementById('result-container').classList.remove('hidden');
     let max = -99, dom = "D";
-    for(let t in scores) {
-        let final = scores[t] - scoresLeast[t];
-        if(final > max) { max = final; dom = t; }
-    }
-    
+    for(let t in scores) { let final = scores[t] - scoresLeast[t]; if(final > max) { max = final; dom = t; } }
+
     const ctx = document.getElementById('discRadarChart').getContext('2d');
     if(radarChart) radarChart.destroy();
     radarChart = new Chart(ctx, {
-        type: 'radar',
-        data: {
-            labels: ['Dominance', 'Influence', 'Steadiness', 'Compliance'],
-            datasets: [{
-                data: [scores.D, scores.I, scores.S, scores.C],
-                backgroundColor: 'rgba(26, 35, 126, 0.1)',
-                borderColor: '#1A237E',
-                borderWidth: 2,
-                pointRadius: 4,
-                pointBackgroundColor: '#1A237E'
-            }]
-        },
+        type: 'radar', data: { labels: ['Dominance', 'Influence', 'Steadiness', 'Compliance'], datasets: [{ data: [scores.D, scores.I, scores.S, scores.C], backgroundColor: 'rgba(26, 35, 126, 0.1)', borderColor: '#1A237E', borderWidth: 3 }] },
         options: { scales: { r: { suggestMin: 0, ticks: { display: false } } }, plugins: { legend: { display: false } } }
     });
 
@@ -105,14 +82,10 @@ function showResult() {
     document.getElementById('insight-lead').textContent = discData[dom].lead;
     document.getElementById('insight-work').textContent = discData[dom].work;
     document.getElementById('desc-komunikasi').textContent = discData[dom].komunikasi;
-    document.getElementById('cert-id-val').textContent = "ARAYA-DISC-" + Math.floor(10000 + Math.random() * 90000);
+    document.getElementById('cert-id-val').textContent = "ARAYA-" + Math.floor(10000 + Math.random() * 90000);
 }
 
 document.getElementById('download-cert').addEventListener('click', () => {
-    const el = document.getElementById('certificate-template');
-    el.style.display = 'block';
-    html2pdf().from(el).set({
-        margin: 0, filename: `Sertifikat_DISC_${userName}.pdf`,
-        html2canvas: { scale: 2, useCORS: true }, jsPDF: { format: 'a4', orientation: 'landscape' }
-    }).save().then(() => el.style.display = 'none');
+    const el = document.getElementById('certificate-template'); el.style.display = 'block';
+    html2pdf().from(el).set({ margin: 0, filename: `Sertifikat_DISC_${userName}.pdf`, html2canvas: { scale: 2, useCORS: true }, jsPDF: { format: 'a4', orientation: 'landscape' } }).save().then(() => el.style.display = 'none');
 });
