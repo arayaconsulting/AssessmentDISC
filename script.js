@@ -70,7 +70,7 @@ function showResult() {
     const ctx = document.getElementById('discRadarChart').getContext('2d');
     if(radarChart) radarChart.destroy();
     radarChart = new Chart(ctx, {
-        type: 'radar', data: { labels: ['Dominance', 'Influence', 'Steadiness', 'Compliance'], datasets: [{ data: [scores.D, scores.I, scores.S, scores.C], backgroundColor: 'rgba(26, 35, 126, 0.1)', borderColor: '#1A237E', borderWidth: 3 }] },
+        type: 'radar', data: { labels: ['Dominance', 'Influence', 'Steadiness', 'Compliance'], datasets: [{ data: [scores.D, scores.I, scores.S, scores.C], backgroundColor: 'rgba(26, 35, 126, 0.1)', borderColor: '#1A237E', borderWidth: 2, pointRadius: 4 }] },
         options: { scales: { r: { suggestMin: 0, ticks: { display: false } } }, plugins: { legend: { display: false } } }
     });
 
