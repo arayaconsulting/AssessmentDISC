@@ -25,28 +25,32 @@ const quizQuestions = [
     { question: "24. Kalau tim tidak kompak, saya akan:", options: [{ text: "Tegur dan ambil alih kendali", type: "D" }, { text: "Bikin games atau candaan", type: "I" }, { text: "Dampingi yang merasa tertekan", type: "S" }, { text: "Identifikasi masalah sistem dan peran", type: "C" }] }
 ];
 
-const narratives = {
+const fullNarratives = {
     "D": {
-        left: `<b>Karakteristik Dasar:</b> Anda adalah penggerak yang berorientasi pada hasil dan efisiensi. Memiliki motivasi internal yang kuat untuk menaklukkan tantangan secara mandiri.<br><br><b>Kekuatan & Kelemahan:</b> Mampu mengambil keputusan cepat dan berani mengambil risiko. Namun, terkadang terlihat tidak sabar dan mendominasi.<br><br><b>Saran Pengembangan:</b> Berlatihlah untuk mendengarkan masukan tim.`,
-        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Kepemimpinan:</b> Visioner dan tegas. Fokus pada target.<br><br><b>Panduan Komunikasi:</b> Bicara langsung ke inti (to-the-point).</div>`
+        name: "Dominance",
+        left: `<b>Karakteristik Dasar:</b> Anda adalah penggerak yang berorientasi pada hasil dan efisiensi. Memiliki motivasi internal kuat untuk menaklukkan tantangan.<br><br><b>Kekuatan & Kelemahan:</b> Cepat mengambil keputusan sulit, gigih, dan berani mengambil risiko besar. Namun, terkadang terlihat tidak sabar dan kurang empati.<br><br><b>Saran Pengembangan:</b> Berlatihlah untuk mendengarkan masukan tim.`,
+        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Gaya Kepemimpinan:</b> Visioner dan tegas. Fokus pada target akhir.<br><br><b>Panduan Komunikasi:</b> Bicara langsung ke inti (to-the-point) dan berikan opsi solusi.</div>`
     },
     "I": {
-        left: `<b>Karakteristik Dasar:</b> Pribadi yang hangat, penuh energi, dan persuasif. Mahir memengaruhi orang lain melalui ide kreatif.<br><br><b>Kekuatan & Kelemahan:</b> Komunikator hebat dan optimis. Namun, seringkali kurang teratur dalam detail administrasi.<br><br><b>Saran Pengembangan:</b> Tingkatkan disiplin waktu.`,
-        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Kepemimpinan:</b> Inspiratif dan demokratis.<br><br><b>Panduan Komunikasi:</b> Gunakan pendekatan santai.</div>`
+        name: "Influence",
+        left: `<b>Karakteristik Dasar:</b> Pribadi yang hangat, penuh energi, dan persuasif. Mahir memengaruhi orang lain melalui ide kreatif dan antusiasme.<br><br><b>Kekuatan & Kelemahan:</b> Komunikator hebat dan optimis. Namun, seringkali kurang teratur dalam detail administrasi.<br><br><b>Saran Pengembangan:</b> Tingkatkan disiplin manajemen waktu.`,
+        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Gaya Kepemimpinan:</b> Demokratis dan inspiratif. Memimpin dengan karisma.<br><br><b>Panduan Komunikasi:</b> Gunakan pendekatan hangat dan santai. Berikan ruang ide.</div>`
     },
     "S": {
-        left: `<b>Karakteristik Dasar:</b> Pilar tim yang tenang, setia, dan konsisten. Menghargai harmoni dan stabilitas.<br><br><b>Kekuatan & Kelemahan:</b> Sabar dan pendengar yang baik. Namun, sulit berkata "tidak" dan cenderung menunda perubahan.<br><br><b>Saran Pengembangan:</b> Berlatihlah untuk lebih asertif.`,
-        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Kepemimpinan:</b> Suportif (Servant Leader).<br><br><b>Panduan Komunikasi:</b> Berikan instruksi yang jelas.</div>`
+        name: "Steadiness",
+        left: `<b>Karakteristik Dasar:</b> Pilar pendukung organisasi yang tenang dan setia. Menghargai harmoni, stabilitas, dan konsistensi jangka panjang.<br><br><b>Kekuatan & Kelemahan:</b> Sabar, pendengar baik, dan kooperatif. Namun, cenderung menghindari konflik mendadak.<br><br><b>Saran Pengembangan:</b> Berlatihlah untuk lebih asertif menyatakan pendapat.`,
+        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Gaya Kepemimpinan:</b> Suportif (Servant Leader). Menjaga keamanan tim.<br><br><b>Panduan Komunikasi:</b> Bicara tenang dan ramah. Berikan waktu untuk memproses informasi.</div>`
     },
     "C": {
-        left: `<b>Karakteristik Dasar:</b> Analitis, objektif, dan perfeksionis. Menghargai struktur, aturan, dan akurasi tinggi.<br><br><b>Kekuatan & Kelemahan:</b> Perencanaan sangat detail. Namun, sering terjebak "analysis paralysis" dan sulit menerima kesalahan.<br><br><b>Saran Pengembangan:</b> Lebih fleksibel terhadap perubahan.`,
-        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Kepemimpinan:</b> Terorganisir (Sistematis).<br><br><b>Panduan Komunikasi:</b> Sediakan data dan fakta akurat.</div>`
+        name: "Compliance",
+        left: `<b>Karakteristik Dasar:</b> Analitis, objektif, dan perfeksionis. Menghargai struktur, aturan, dan akurasi tinggi dalam segala hal.<br><br><b>Kekuatan & Kelemahan:</b> Standar kualitas tinggi dan analisis risiko mendalam. Namun, sering terjebak analysis paralysis.<br><br><b>Saran Pengembangan:</b> Lebih fleksibel terhadap kesalahan non-strategis.`,
+        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Gaya Kepemimpinan:</b> Berbasis sistem. Memastikan standar prosedur berjalan.<br><br><b>Panduan Komunikasi:</b> Sediakan data akurat dan penjelasan logis terstruktur.</div>`
     }
 };
 
-let currentIdx = 0, userName = "", scores = { D: 0, I: 0, S: 0, C: 0 }, radarInstance = null;
+let currentIdx = 0, userName = "", scores = { D: 0, I: 0, S: 0, C: 0 }, scoresLeast = { D: 0, I: 0, S: 0, C: 0 }, radarInstance = null;
 
-document.getElementById('start-form').addEventListener('submit', function(e) {
+document.getElementById('start-form').addEventListener('submit', (e) => {
     e.preventDefault(); userName = document.getElementById('user-name').value.trim();
     document.getElementById('intro-container').classList.add('hidden');
     document.getElementById('quiz-container').classList.remove('hidden'); showQuestion();
@@ -54,52 +58,63 @@ document.getElementById('start-form').addEventListener('submit', function(e) {
 
 function showQuestion() {
     const q = quizQuestions[currentIdx];
-    document.getElementById('question-text').textContent = `(${currentIdx+1}/24) Pilih satu yang PALING mewakili diri Anda:`;
+    document.getElementById('question-text').textContent = `(${currentIdx+1}/24) Pilih Paling & Bukan:`;
     const container = document.getElementById('options-container'); container.innerHTML = '';
-    q.options.forEach(opt => {
-        const btn = document.createElement('button'); btn.textContent = opt.text; btn.className = 'option-button';
-        if (q.selectedType === opt.type) btn.classList.add('selected');
-        btn.onclick = () => { q.selectedType = opt.type; currentIdx++; if(currentIdx < 24) showQuestion(); else showResult(); };
-        container.appendChild(btn);
+    q.options.forEach((opt) => {
+        const row = document.createElement('div'); row.className = 'option-row';
+        row.innerHTML = `<input type="radio" name="most" value="${opt.type}" required> <input type="radio" name="least" value="${opt.type}" required> <span class="option-text">${opt.text}</span>`;
+        container.appendChild(row);
     });
     document.getElementById('progress-bar').style.width = `${((currentIdx + 1) / 24) * 100}%`;
 }
 
+document.getElementById('quiz-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const most = document.querySelector('input[name="most"]:checked').value;
+    const least = document.querySelector('input[name="least"]:checked').value;
+    if (most === least) return alert("Pilihan Paling dan Bukan harus berbeda!");
+    scores[most]++; scoresLeast[least]++; currentIdx++;
+    if (currentIdx < 24) showQuestion(); else showResult();
+});
+
 function showResult() {
     document.getElementById('quiz-container').classList.add('hidden');
     document.getElementById('result-container').classList.remove('hidden');
-    scores = { D: 0, I: 0, S: 0, C: 0 };
-    quizQuestions.forEach(q => { if(q.selectedType) scores[q.selectedType]++; });
-    const dom = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-    document.getElementById('result-title').textContent = `Hasil: ${dom}`;
-    document.getElementById('result-description').textContent = `Halo ${userName}, peta kepribadian Anda telah siap.`;
+    let max = -100, dominant = "D";
+    for(let t in scores) { let final = scores[t] - scoresLeast[t]; if(final > max) { max = final; dominant = t; } }
+    document.getElementById('result-title').textContent = `Hasil: ${fullNarratives[dominant].name}`;
+    document.getElementById('result-description').textContent = `Halo ${userName}, peta kepribadian Anda telah terpetakan secara lengkap.`;
 }
 
-function createChart(data) {
+function createRadar(m, l) {
     const ctx = document.getElementById('radarChart').getContext('2d');
     if (radarInstance) radarInstance.destroy();
     radarInstance = new Chart(ctx, {
         type: 'radar',
-        data: { labels: ['D', 'I', 'S', 'C'], datasets: [{ data: [data.D, data.I, data.S, data.C], backgroundColor: 'rgba(26,42,108,0.2)', borderColor: '#1a2a6c', borderWidth: 2 }] },
-        options: { responsive: false, animation: false, scales: { r: { suggestedMax: 10, ticks: { display: false } } }, plugins: { legend: { display: false } } }
+        data: { labels: ['Dominance', 'Influence', 'Steadiness', 'Compliance'], datasets: [{ data: [m.D-l.D, m.I-l.I, m.S-l.S, m.C-l.C], backgroundColor: 'rgba(26,42,108,0.2)', borderColor: '#1a2a6c', borderWidth: 2 }] },
+        options: { responsive: false, animation: false, scales: { r: { suggestedMin: -10, suggestedMax: 20, ticks: { display: false } } }, plugins: { legend: { display: false } } }
     });
 }
 
 document.getElementById('download-cert-button').onclick = async function() {
-    const btn = this; btn.disabled = true; btn.textContent = "Proses...";
-    try {
-        const dom = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-        document.getElementById('cert-user-name').textContent = userName.toUpperCase();
-        document.getElementById('cert-type').textContent = dom;
-        document.getElementById('cert-col-left').innerHTML = narratives[dom].left;
-        document.getElementById('cert-col-right').innerHTML = narratives[dom].right;
-        document.getElementById('cert-date').textContent = new Date().toLocaleDateString('id-ID');
-        document.getElementById('cert-id').textContent = "ARAYA-" + Math.floor(Math.random() * 9000 + 1000);
-        createChart(scores);
-        await new Promise(r => setTimeout(r, 800));
-        const canvas = await html2canvas(document.getElementById('cert-content'), { scale: 2, useCORS: true });
-        const pdf = new jspdf.jsPDF('l', 'mm', 'a4');
-        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 297, 210);
-        pdf.save(`DISC_${userName.replace(/\s+/g, '_')}.pdf`);
-    } catch (e) { alert("Gagal unduh."); } finally { btn.disabled = false; btn.textContent = "Unduh Sertifikat (PDF)"; }
+    this.disabled = true; this.textContent = "Proses...";
+    let max = -100, dom = "D";
+    for(let t in scores) { let final = scores[t] - scoresLeast[t]; if(final > max) { max = final; dom = t; } }
+    
+    document.getElementById('cert-user-name').textContent = userName.toUpperCase();
+    document.getElementById('cert-type').textContent = fullNarratives[dom].name;
+    document.getElementById('cert-col-left').innerHTML = fullNarratives[dom].left;
+    document.getElementById('cert-col-right').innerHTML = fullNarratives[dom].right;
+    document.getElementById('cert-date').textContent = new Date().toLocaleDateString('id-ID');
+    document.getElementById('cert-id').textContent = "ARAYA-DISC-" + Math.floor(Math.random() * 9000 + 1000);
+    
+    createRadar(scores, scoresLeast);
+    await new Promise(r => setTimeout(r, 800));
+    
+    const canvas = await html2canvas(document.getElementById('cert-content'), { scale: 2, useCORS: true });
+    const pdf = new jspdf.jsPDF('l', 'mm', 'a4');
+    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 297, 210);
+    pdf.save(`Sertifikat_DISC_${userName.replace(/\s+/g, '_')}.pdf`);
+    
+    this.disabled = false; this.textContent = "Unduh Sertifikat (PDF)";
 };
