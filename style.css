@@ -227,7 +227,7 @@ button:hover {
     z-index: 1; 
     flex-grow: 1; 
     margin-top: 40px; 
-    margin-bottom: 60px; 
+    margin-bottom: 120px; /* Menambah jarak bawah agar area footer aman */
 }
 
 .cert-column { 
@@ -265,7 +265,7 @@ button:hover {
 /* --- FOOTER & SIGNATURE AREA (PROPORTIONAL) --- */
 .cert-footer-section { 
     position: absolute; 
-    bottom: 35px; /* Digeser ke bawah sesuai instruksi */
+    bottom: 30px; /* Menurunkan seluruh footer lebih ke bawah */
     left: 50px; 
     right: 50px; 
     display: flex; 
@@ -279,11 +279,11 @@ button:hover {
     text-align: center; 
     width: 230px; 
     position: relative; 
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 
 .sig-consultant { 
-    margin-bottom: 75px; /* Memberi ruang agar ttd tidak menimpa teks */
+    margin-bottom: 90px; /* Meningkatkan jarak agar tanda tangan tidak menabrak teks */
     font-size: 13px; 
     color: #666; 
     font-weight: 600; 
@@ -291,9 +291,9 @@ button:hover {
 }
 
 .sig-image { 
-    width: 110px; 
+    width: 100px; 
     position: absolute; 
-    bottom: 35px; /* Posisi ttd melayang di atas garis nama */
+    bottom: 35px; 
     left: 50%; 
     transform: translateX(-50%); 
     z-index: 5; 
