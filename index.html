@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DISC Profile Assessment - Araya Consulting</title>
+    <title>DISC Profile - Araya Consulting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
         <h1>Asesmen Kepribadian DISC</h1>
         <form id="start-form">
             <input type="text" id="user-name" placeholder="Nama Lengkap Anda" required>
+            <input type="tel" id="user-phone" placeholder="Nomor WhatsApp (Contoh: 0812...)" required>
             <button type="submit" id="start-button">Mulai Analisis</button>
         </form>
     </div>
@@ -38,8 +39,20 @@
         <img src="logo.png" style="width: 80px; margin-bottom: 10px;">
         <h2 id="result-title"></h2>
         <p id="result-description"></p>
+        
+        <div class="activation-box">
+            <h3>Sertifikat Analisis Anda Sudah Siap!</h3>
+            <p>Silakan masukkan Kode Aktivasi untuk membuka akses download sertifikat premium.</p>
+            <input type="text" id="activation-code" placeholder="Masukkan Kode Aktivasi">
+            <button id="unlock-button">Buka Akses Sertifikat</button>
+            <div style="margin-top: 15px;">
+                <p style="font-size: 12px;">Belum punya kode? Silakan klaim melalui:</p>
+                <a id="buy-wa" href="#" target="_blank" class="btn-wa">Beli Kode via WhatsApp</a>
+            </div>
+        </div>
+
         <div class="button-group">
-            <button id="download-cert-button">Unduh Sertifikat (PDF)</button>
+            <button id="download-cert-button" class="hidden">Unduh Sertifikat (PDF)</button>
             <button onclick="location.reload()" class="btn-secondary">Beranda</button>
         </div>
     </div>
@@ -64,20 +77,18 @@
 
             <div class="cert-main-grid">
                 <div id="cert-col-left" class="cert-column column-left"></div>
-
                 <div class="cert-column column-center">
                     <h4 class="spektrum-title">Spektrum Karakter</h4>
                     <canvas id="radarChart" width="230" height="230"></canvas>
                 </div>
-
                 <div id="cert-col-right" class="cert-column column-right"></div>
             </div>
 
             <div class="cert-footer-section">
                 <div class="cert-id-date">
                     <p>ID: <span id="cert-id"></span></p>
+                    <p>WA: <span id="cert-phone-val"></span></p>
                     <p>Tanggal: <span id="cert-date"></span></p>
-                    <p class="footer-brand">Araya Consulting - Your Growth Partner</p>
                 </div>
                 
                 <div class="cert-signature-box">
@@ -91,7 +102,6 @@
             </div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
