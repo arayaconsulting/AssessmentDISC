@@ -1,3 +1,11 @@
+/**
+ * ARAYA CONSULTING - DISC ASSESSMENT
+ * Database: Google Sheets (Spreadsheet Sync)
+ */
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyNWhvE1oO-ZwJ21h3FdXr84iDcg71fbUJxLeHXOR-jU14T7OGCuO3iwUN-WtbT9EtBqA/exec';
+const adminPhone = "6285232526003";
+
 const quizQuestions = [
     { question: "1. Saat dihadapkan pada keputusan penting, saya cenderung:", options: [{ text: "Mengambil keputusan cepat dan tegas", type: "D" }, { text: "Berdiskusi dengan orang lain sebelum memutuskan", type: "I" }, { text: "Menimbang perasaan semua pihak terlebih dahulu", type: "S" }, { text: "Menganalisis data dan informasi sebelum memutuskan", type: "C" }] },
     { question: "2. Dalam menghadapi konflik, saya biasanya:", options: [{ text: "Menghadapinya secara langsung dan cepat", type: "D" }, { text: "Berusaha mencairkan suasana dengan humor", type: "I" }, { text: "Menenangkan semua orang agar tidak terjadi ketegangan", type: "S" }, { text: "Mengumpulkan fakta sebelum menyimpulkan", type: "C" }] },
@@ -26,34 +34,33 @@ const quizQuestions = [
 ];
 
 const fullNarratives = {
-    "D": {
-        name: "Dominance",
-        left: `<b>Karakteristik Dasar:</b> Anda adalah penggerak yang berorientasi pada hasil dan efisiensi. Memiliki motivasi internal kuat untuk menaklukkan tantangan.<br><br><b>Kekuatan & Kelemahan:</b> Cepat mengambil keputusan sulit, gigih, dan berani mengambil risiko besar. Namun, terkadang terlihat tidak sabar dan kurang empati.<br><br><b>Saran Pengembangan:</b> Berlatihlah untuk mendengarkan masukan tim.`,
-        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Gaya Kepemimpinan:</b> Visioner dan tegas. Fokus pada target akhir.<br><br><b>Panduan Komunikasi:</b> Bicara langsung ke inti (to-the-point) dan berikan opsi solusi.</div>`
+    "Dominance": {
+        left: `<b>Karakteristik Dasar:</b><br>Individu dengan profil Dominance tinggi adalah penggerak yang berorientasi pada hasil dan efisiensi. Anda dikenal sebagai pribadi yang asertif, mandiri, dan berani mengambil risiko besar demi mencapai visi yang telah ditetapkan. Anda cenderung tidak menyukai hal-hal yang bertele-tele dan lebih menyukai lingkungan kerja yang memberikan otonomi penuh.<br><br><b>Kekuatan & Kelemahan:</b> Anda sangat hebat dalam pengambilan keputusan cepat dan eksekusi lapangan. Namun, Anda perlu waspada terhadap kecenderungan sikap yang terlalu dominan, kurang sabar terhadap detail, atau terkesan mengabaikan perasaan orang lain.<br><br><b>Rekomendasi Karir & Akademik:</b> CEO, Manajer Proyek, Wirausaha, Direktur Operasional, atau Pengacara.<br><br><b>Saran Pengembangan:</b> Berlatihlah untuk mendengarkan perspektif tim secara mendalam agar ketegasan Anda tidak dianggap intimidasi.`,
+        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Gaya Kepemimpinan:</b> Visioner dan tegas. Fokus pada target akhir.<br><br><b>Gaya Kerja & Kolaborasi:</b> Eksekutor handal dalam proyek baru.<br><br><b>Panduan Komunikasi:</b> Bicara langsung ke inti (to-the-point) dan fokus pada solusi.</div>`
     },
-    "I": {
-        name: "Influence",
-        left: `<b>Karakteristik Dasar:</b> Pribadi yang hangat, penuh energi, dan persuasif. Mahir memengaruhi orang lain melalui ide kreatif dan antusiasme.<br><br><b>Kekuatan & Kelemahan:</b> Komunikator hebat dan optimis. Namun, seringkali kurang teratur dalam detail administrasi.<br><br><b>Saran Pengembangan:</b> Tingkatkan disiplin manajemen waktu.`,
-        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Gaya Kepemimpinan:</b> Demokratis dan inspiratif. Memimpin dengan karisma.<br><br><b>Panduan Komunikasi:</b> Gunakan pendekatan hangat dan santai. Berikan ruang ide.</div>`
+    "Influence": {
+        left: `<b>Karakteristik Dasar:</b><br>Anda adalah pribadi yang hangat, penuh energi, dan persuasif. Sebagai komunikator alami, Anda mahir memotivasi orang lain melalui ide kreatif dan antusiasme. Anda sangat menyukai interaksi sosial dan pengakuan publik.<br><br><b>Kekuatan & Kelemahan:</b> Hebat dalam membangun jaringan dan menginspirasi tim. Namun, Anda mungkin memiliki tantangan dalam disiplin waktu dan pengerjaan detail administratif yang kaku.<br><br><b>Rekomendasi Karir & Akademik:</b> Marketing, PR, Penulis, Motivator, atau Seni Pertunjukan.<br><br><b>Saran Pengembangan:</b> Tingkatkan disiplin manajemen waktu dan pastikan ide kreatif diikuti rencana aksi nyata.`,
+        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Gaya Kepemimpinan:</b> Inspiratif dan memimpin dengan membangun hubungan personal.<br><br><b>Gaya Kerja & Kolaborasi:</b> Produktif dalam kolaborasi dan jejaring.<br><br><b>Panduan Komunikasi:</b> Gunakan pendekatan hangat dan santai. Berikan ruang untuk berekspresi.</div>`
     },
-    "S": {
-        name: "Steadiness",
-        left: `<b>Karakteristik Dasar:</b> Pilar pendukung organisasi yang tenang dan setia. Menghargai harmoni, stabilitas, dan konsistensi jangka panjang.<br><br><b>Kekuatan & Kelemahan:</b> Sabar, pendengar baik, dan kooperatif. Namun, cenderung menghindari konflik mendadak.<br><br><b>Saran Pengembangan:</b> Berlatihlah untuk lebih asertif menyatakan pendapat.`,
-        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Gaya Kepemimpinan:</b> Suportif (Servant Leader). Menjaga keamanan tim.<br><br><b>Panduan Komunikasi:</b> Bicara tenang dan ramah. Berikan waktu untuk memproses informasi.</div>`
+    "Steadiness": {
+        left: `<b>Karakteristik Dasar:</b><br>Pilar pendukung organisasi yang tenang, stabil, dan setia. Anda sangat menghargai harmoni, stabilitas, dan konsistensi jangka panjang. Anda adalah pendengar yang luar biasa dan mitra kerja yang kooperatif.<br><br><b>Kekuatan & Kelemahan:</b> Sabar dan mampu menjaga stabilitas tim di tengah dinamika. Namun, Anda mungkin merasa kesulitan saat menghadapi perubahan mendadak atau konflik terbuka.<br><br><b>Rekomendasi Karir & Akademik:</b> HRD, Konselor, Guru, Administrator, atau Layanan Pelanggan.<br><br><b>Saran Pengembangan:</b> Berlatihlah menyuarakan pendapat secara langsung dan lebih terbuka terhadap perubahan spontan.`,
+        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Gaya Kepemimpinan:</b> Pemimpin melayani (Servant Leader). Menjaga keamanan tim.<br><br><b>Gaya Kerja & Kolaborasi:</b> Pekerja tim loyal yang bagus dalam dukungan teknis.<br><br><b>Panduan Komunikasi:</b> Bicara tenang dan ramah. Berikan waktu untuk memproses informasi.</div>`
     },
-    "C": {
-        name: "Compliance",
-        left: `<b>Karakteristik Dasar:</b> Analitis, objektif, dan perfeksionis. Menghargai struktur, aturan, dan akurasi tinggi dalam segala hal.<br><br><b>Kekuatan & Kelemahan:</b> Standar kualitas tinggi dan analisis risiko mendalam. Namun, sering terjebak analysis paralysis.<br><br><b>Saran Pengembangan:</b> Lebih fleksibel terhadap kesalahan non-strategis.`,
-        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Gaya Kepemimpinan:</b> Berbasis sistem. Memastikan standar prosedur berjalan.<br><br><b>Panduan Komunikasi:</b> Sediakan data akurat dan penjelasan logis terstruktur.</div>`
+    "Compliance": {
+        left: `<b>Karakteristik Dasar:</b><br>Individu analitis yang mendasarkan keputusan pada data dan fakta. Anda menghargai struktur, aturan, dan akurasi tinggi. Standar kualitas Anda terhadap pekerjaan sangat mendalam dan teknis.<br><br><b>Kekuatan & Kelemahan:</b> Akurasi sangat tinggi dan analisis risiko mendalam. Namun, Anda mungkin terjebak dalam 'analysis paralysis' dan sulit menerima kritik subjektif.<br><br><b>Rekomendasi Karir & Akademik:</b> Insinyur, Akuntan, Peneliti, Auditor, atau Analis Data.<br><br><b>Saran Pengembangan:</b> Belajarlah untuk lebih fleksibel terhadap kesalahan kecil dan hindari mengkritik berlebihan rekan kerja.`,
+        right: `<div style="background:rgba(26,42,108,0.03); padding:10px; border-left:4px solid #c5a059;"><b>Business & Leadership Insight:</b><br><br><b>Gaya Kepemimpinan:</b> Berbasis sistem yang memastikan organisasi pada jalur prosedur.<br><br><b>Gaya Kerja & Kolaborasi:</b> Ahli manajemen kualitas dan perencanaan strategis.<br><br><b>Panduan Komunikasi:</b> Sediakan data akurat dan penjelasan logis terstruktur.</div>`
     }
 };
 
-let currentIdx = 0, userName = "", scores = { D: 0, I: 0, S: 0, C: 0 }, scoresLeast = { D: 0, I: 0, S: 0, C: 0 }, radarInstance = null;
+let currentIdx = 0, userName = "", userPhone = "", scores = { D: 0, I: 0, S: 0, C: 0 }, scoresLeast = { D: 0, I: 0, S: 0, C: 0 }, radarInstance = null;
 
 document.getElementById('start-form').addEventListener('submit', (e) => {
-    e.preventDefault(); userName = document.getElementById('user-name').value.trim();
+    e.preventDefault();
+    userName = document.getElementById('user-name').value.trim();
+    userPhone = document.getElementById('user-phone').value.trim();
     document.getElementById('intro-container').classList.add('hidden');
-    document.getElementById('quiz-container').classList.remove('hidden'); showQuestion();
+    document.getElementById('quiz-container').classList.remove('hidden');
+    showQuestion();
 });
 
 function showQuestion() {
@@ -70,51 +77,83 @@ function showQuestion() {
 
 document.getElementById('quiz-form').addEventListener('submit', (e) => {
     e.preventDefault();
-    const most = document.querySelector('input[name="most"]:checked').value;
-    const least = document.querySelector('input[name="least"]:checked').value;
-    if (most === least) return alert("Pilihan Paling dan Bukan harus berbeda!");
-    scores[most]++; scoresLeast[least]++; currentIdx++;
-    if (currentIdx < 24) showQuestion(); else showResult();
+    const m = document.querySelector('input[name="most"]:checked').value;
+    const l = document.querySelector('input[name="least"]:checked').value;
+    if (m === l) return alert("Pilihan Paling dan Bukan harus berbeda!");
+    scores[m]++; scoresLeast[l]++; currentIdx++;
+    if (currentIdx < 24) showQuestion(); else calculateResult();
 });
 
-function showResult() {
+async function calculateResult() {
     document.getElementById('quiz-container').classList.add('hidden');
     document.getElementById('result-container').classList.remove('hidden');
     let max = -100, dominant = "D";
     for(let t in scores) { let final = scores[t] - scoresLeast[t]; if(final > max) { max = final; dominant = t; } }
-    document.getElementById('result-title').textContent = `Hasil: ${fullNarratives[dominant].name}`;
-    document.getElementById('result-description').textContent = `Halo ${userName}, peta kepribadian Anda telah terpetakan secara lengkap.`;
+    
+    const fullDom = {D:"Dominance", I:"Influence", S:"Steadiness", C:"Compliance"}[dominant];
+    const testID = "ARAYA-DISC-" + Math.floor(Math.random() * 9000 + 1000);
+    
+    document.getElementById('result-title').textContent = `Hasil: ${fullDom}`;
+    document.getElementById('result-description').textContent = `Halo ${userName}, peta kepribadian dominan Anda telah teridentifikasi.`;
+    document.getElementById('buy-wa').href = `https://wa.me/${adminPhone}?text=Halo%20Mas%20Ali,%20saya%20sudah%20selesai%20tes%20DISC.%20Mohon%20kode%20aktivasi%20sertifikat.%20ID%20saya:%20${testID}`;
+
+    // KIRIM DATA KE GOOGLE SHEETS
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({
+            nama: userName, whatsapp: userPhone, hasil: fullDom,
+            skorD: scores.D-scoresLeast.D, skorI: scores.I-scoresLeast.I,
+            skorS: scores.S-scoresLeast.S, skorC: scores.C-scoresLeast.C,
+            id: testID
+        })
+    });
+
+    // Siapkan data sertifikat
+    document.getElementById('cert-user-name').textContent = userName.toUpperCase();
+    document.getElementById('cert-phone-val').textContent = userPhone;
+    document.getElementById('cert-type').textContent = fullDom;
+    document.getElementById('cert-col-left').innerHTML = fullNarratives[fullDom].left;
+    document.getElementById('cert-col-right').innerHTML = fullNarratives[fullDom].right;
+    document.getElementById('cert-date').textContent = new Date().toLocaleDateString('id-ID');
+    document.getElementById('cert-id').textContent = testID;
 }
 
-function createRadar(m, l) {
+// FUNGSI UNLOCK SERTIFIKAT (SYNC DENGAN SPREADSHEET)
+document.getElementById('unlock-button').onclick = async function() {
+    const code = document.getElementById('activation-code').value.trim();
+    if(!code) return alert("Masukkan kode!");
+    this.disabled = true; this.textContent = "Memvalidasi...";
+
+    try {
+        const response = await fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify({ whatsapp: userPhone, checkCode: code })
+        });
+        const result = await response.text();
+
+        if (result === "Valid") {
+            alert("Akses Dibuka!");
+            document.querySelector('.activation-box').classList.add('hidden');
+            document.getElementById('download-cert-button').classList.remove('hidden');
+        } else { alert("Kode Aktivasi Salah atau tidak sesuai!"); }
+    } catch (e) { alert("Error koneksi!"); } finally {
+        this.disabled = false; this.textContent = "Buka Akses Sertifikat";
+    }
+};
+
+document.getElementById('download-cert-button').onclick = async function() {
+    this.disabled = true; this.textContent = "Proses...";
     const ctx = document.getElementById('radarChart').getContext('2d');
     if (radarInstance) radarInstance.destroy();
     radarInstance = new Chart(ctx, {
         type: 'radar',
-        data: { labels: ['Dominance', 'Influence', 'Steadiness', 'Compliance'], datasets: [{ data: [m.D-l.D, m.I-l.I, m.S-l.S, m.C-l.C], backgroundColor: 'rgba(26,42,108,0.2)', borderColor: '#1a2a6c', borderWidth: 2 }] },
+        data: { labels: ['Dominance', 'Influence', 'Steadiness', 'Compliance'], datasets: [{ data: [scores.D-scoresLeast.D, scores.I-scoresLeast.I, scores.S-scoresLeast.S, scores.C-scoresLeast.C], backgroundColor: 'rgba(26,42,108,0.2)', borderColor: '#1a2a6c', borderWidth: 2 }] },
         options: { responsive: false, animation: false, scales: { r: { suggestedMin: -10, suggestedMax: 20, ticks: { display: false } } }, plugins: { legend: { display: false } } }
     });
-}
-
-document.getElementById('download-cert-button').onclick = async function() {
-    this.disabled = true; this.textContent = "Proses...";
-    let max = -100, dom = "D";
-    for(let t in scores) { let final = scores[t] - scoresLeast[t]; if(final > max) { max = final; dom = t; } }
-    
-    document.getElementById('cert-user-name').textContent = userName.toUpperCase();
-    document.getElementById('cert-type').textContent = fullNarratives[dom].name;
-    document.getElementById('cert-col-left').innerHTML = fullNarratives[dom].left;
-    document.getElementById('cert-col-right').innerHTML = fullNarratives[dom].right;
-    document.getElementById('cert-date').textContent = new Date().toLocaleDateString('id-ID');
-    document.getElementById('cert-id').textContent = "ARAYA-DISC-" + Math.floor(Math.random() * 9000 + 1000);
-    
-    createRadar(scores, scoresLeast);
     await new Promise(r => setTimeout(r, 800));
-    
     const canvas = await html2canvas(document.getElementById('cert-content'), { scale: 2, useCORS: true });
     const pdf = new jspdf.jsPDF('l', 'mm', 'a4');
     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 297, 210);
-    pdf.save(`Sertifikat_DISC_${userName.replace(/\s+/g, '_')}.pdf`);
-    
+    pdf.save(`Sertifikat_DISC_${userName}.pdf`);
     this.disabled = false; this.textContent = "Unduh Sertifikat (PDF)";
 };
