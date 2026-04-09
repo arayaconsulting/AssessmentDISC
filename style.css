@@ -16,6 +16,7 @@ body {
     margin: 0; 
 }
 
+/* --- KONTAINER APLIKASI --- */
 .container { 
     text-align: center; 
     background: white; 
@@ -176,7 +177,7 @@ button:hover {
     text-transform: uppercase; 
 }
 
-/* --- PERBAIKAN RECIPIENT SECTION (CENTERED) --- */
+/* --- RECIPIENT SECTION (CENTERED) --- */
 .cert-recipient-section {
     text-align: center;
     position: relative;
@@ -184,7 +185,7 @@ button:hover {
     margin: 10px 0;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Mengetengahkan secara horizontal */
+    align-items: center; 
     justify-content: center;
 }
 
@@ -261,10 +262,10 @@ button:hover {
     text-transform: uppercase; 
 }
 
-/* --- FOOTER & SIGNATURE --- */
+/* --- FOOTER & SIGNATURE AREA (PROPORTIONAL) --- */
 .cert-footer-section { 
     position: absolute; 
-    bottom: 45px; 
+    bottom: 35px; /* Digeser ke bawah sesuai instruksi */
     left: 50px; 
     right: 50px; 
     display: flex; 
@@ -278,12 +279,21 @@ button:hover {
     text-align: center; 
     width: 230px; 
     position: relative; 
+    padding-bottom: 10px;
+}
+
+.sig-consultant { 
+    margin-bottom: 75px; /* Memberi ruang agar ttd tidak menimpa teks */
+    font-size: 13px; 
+    color: #666; 
+    font-weight: 600; 
+    display: block;
 }
 
 .sig-image { 
-    width: 100px; 
+    width: 110px; 
     position: absolute; 
-    bottom: 30px; 
+    bottom: 35px; /* Posisi ttd melayang di atas garis nama */
     left: 50%; 
     transform: translateX(-50%); 
     z-index: 5; 
@@ -293,6 +303,7 @@ button:hover {
     border-bottom: 1.5px solid #1a2a6c; 
     display: inline-block; 
     padding: 0 15px; 
+    margin-top: 5px;
 }
 
 .sig-name { 
@@ -300,4 +311,12 @@ button:hover {
     font-size: 19px; 
     color: #1a2a6c; 
     margin: 0; 
+}
+
+.sig-founder {
+    font-size: 9px;
+    color: #c5a059;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 3px;
 }
