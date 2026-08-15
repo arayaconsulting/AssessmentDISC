@@ -1,128 +1,441 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;600;700&display=swap');
 
 :root { 
     --primary: #1A237E; 
-    --accent: #c5a059; 
-    --bg: #F8F9FA; 
+    --primary-light: #3949AB;
+    --primary-gradient: linear-gradient(135deg, #1A237E 0%, #283593 50%, #3949AB 100%);
+    --accent-gold: #c5a059; 
+    --accent-gold-gradient: linear-gradient(135deg, #d4af37 0%, #c5a059 100%);
+    --success: #10b981;
+    --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --wa-color: #25D366;
+    
+    --bg-page: #F4F7FB;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-light: #e2e8f0;
+    
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 25px -5px rgba(26, 35, 126, 0.08), 0 8px 10px -6px rgba(26, 35, 126, 0.04);
+    --shadow-lg: 0 20px 35px -5px rgba(26, 35, 126, 0.12), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body { 
-    font-family: 'Poppins', sans-serif; 
-    background: var(--bg); 
+    font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif; 
+    background: var(--bg-page); 
+    color: var(--text-main);
     display: flex; 
     justify-content: center; 
     align-items: center; 
     min-height: 100vh; 
     margin: 0; 
+    padding: 20px 15px;
+    position: relative;
+    overflow-x: hidden;
 }
 
-/* --- KONTAINER APLIKASI --- */
+/* Background Glowing Shapes */
+.bg-shape {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.55;
+}
+.shape-1 {
+    width: 320px;
+    height: 320px;
+    background: linear-gradient(135deg, rgba(26, 35, 126, 0.25), rgba(57, 73, 171, 0.2));
+    top: -60px;
+    left: -60px;
+}
+.shape-2 {
+    width: 380px;
+    height: 380px;
+    background: linear-gradient(135deg, rgba(197, 160, 89, 0.2), rgba(212, 175, 55, 0.15));
+    bottom: -80px;
+    right: -80px;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: var(--shadow-lg);
+}
+
 .container { 
+    position: relative;
+    z-index: 1;
     text-align: center; 
-    background: white; 
-    padding: 40px; 
-    border-radius: 15px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-    max-width: 550px; 
-    width: 90%; 
-}
-
-.logo { width: 150px; margin-bottom: 20px; }
-h1 { color: var(--primary); font-size: 24px; margin-bottom: 25px; }
-
-input { 
-    padding: 15px; 
+    padding: 40px 32px; 
+    border-radius: 20px; 
+    max-width: 540px; 
     width: 100%; 
-    border-radius: 8px; 
-    border: 1px solid #ccc; 
-    text-align: center; 
-    margin-bottom: 15px; 
-    box-sizing: border-box; 
+    transition: all 0.35s ease;
+    animation: fadeInScale 0.4s ease-out;
 }
 
+@keyframes fadeInScale {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.logo-wrapper {
+    background: white;
+    display: inline-flex;
+    padding: 8px 16px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 18px;
+}
+.logo { width: 140px; height: auto; }
+
+.logo-wrapper-sm { margin-bottom: 10px; }
+.logo-sm { width: 75px; }
+
+.badge-pill {
+    display: inline-block;
+    background: rgba(26, 35, 126, 0.08);
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 5px 14px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.badge-success {
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--success);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+h1 { 
+    color: var(--primary); 
+    font-size: 24px; 
+    font-weight: 800;
+    line-height: 1.3;
+    margin: 0 0 10px 0; 
+}
+
+h2 {
+    color: var(--primary);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin: 0 0 25px 0;
+}
+
+/* Inputs & Form Elements */
+.input-group {
+    margin-bottom: 14px;
+}
+
+input[type="text"], input[type="tel"] { 
+    padding: 14px 18px; 
+    width: 100%; 
+    border-radius: 12px; 
+    border: 1.5px solid var(--border-light); 
+    background: #FAFAFC;
+    color: var(--text-main);
+    font-size: 14px;
+    font-family: inherit;
+    text-align: center; 
+    transition: all 0.25s ease;
+}
+
+input:focus {
+    outline: none;
+    background: #FFFFFF;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(57, 73, 171, 0.12);
+}
+
+/* Modern Buttons */
 button { 
-    background: var(--primary); 
-    color: white; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 700; 
     border: none; 
-    padding: 15px; 
-    font-weight: 600; 
-    border-radius: 8px; 
+    padding: 14px 20px; 
+    border-radius: 12px; 
     cursor: pointer; 
     width: 100%; 
-    transition: 0.3s; 
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
 }
 
-button:hover { 
-    opacity: 0.9; 
-    transform: translateY(-2px); 
-}
-
-.hidden { display: none; }
-.btn-secondary { background: #eee !important; color: #444 !important; margin-top: 10px; }
-
-.activation-box { 
-    background: #fff9e6; 
-    padding: 20px; 
-    border: 2px dashed var(--accent); 
-    border-radius: 12px; 
-    margin: 25px 0; 
-}
-
-.btn-wa { 
-    display: inline-block; 
-    background: #25d366; 
+.btn-primary { 
+    background: var(--primary-gradient); 
     color: white; 
-    padding: 12px 25px; 
-    border-radius: 50px; 
-    text-decoration: none; 
-    font-weight: 600; 
-    font-size: 14px; 
-    margin-top: 10px; 
+    box-shadow: 0 8px 18px rgba(26, 35, 126, 0.25);
+}
+.btn-primary:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 12px 22px rgba(26, 35, 126, 0.32);
+    filter: brightness(1.05);
 }
 
-/* --- LAYOUT KUIS --- */
+.btn-gold {
+    background: var(--accent-gold-gradient);
+    color: #1a1a1a;
+    font-weight: 800;
+    box-shadow: 0 8px 18px rgba(197, 160, 89, 0.3);
+}
+.btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 22px rgba(197, 160, 89, 0.4);
+    filter: brightness(1.04);
+}
+
+.btn-success {
+    background: var(--success-gradient);
+    color: white;
+    box-shadow: 0 8px 18px rgba(16, 185, 129, 0.25);
+    margin-bottom: 10px;
+}
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 22px rgba(16, 185, 129, 0.35);
+}
+
+.btn-secondary { 
+    background: #f1f5f9; 
+    color: var(--text-muted); 
+    margin-top: 8px; 
+}
+.btn-secondary:hover { 
+    background: #e2e8f0; 
+    color: var(--text-main);
+}
+
+.hidden { display: none !important; }
+
+/* Quiz Styles & Custom Radio */
+.quiz-header {
+    margin-bottom: 20px;
+}
+.progress-bar-container { 
+    width: 100%; 
+    background: #e2e8f0; 
+    height: 7px; 
+    border-radius: 10px; 
+    margin-bottom: 18px; 
+    overflow: hidden;
+}
+#progress-bar { 
+    background: var(--primary-gradient); 
+    height: 100%; 
+    width: 0; 
+    transition: width 0.4s ease; 
+}
+
 .radio-header { 
     display: grid; 
-    grid-template-columns: 60px 60px 1fr; 
-    gap: 10px; 
+    grid-template-columns: 55px 55px 1fr; 
+    gap: 12px; 
+    font-size: 13px;
     font-weight: 800; 
     color: var(--primary); 
-    border-bottom: 2px solid #eee; 
-    margin-bottom: 10px; 
-    padding-bottom: 5px; 
+    border-bottom: 2px solid #edf2f7; 
+    margin-bottom: 8px; 
+    padding-bottom: 8px; 
+    text-align: center;
+}
+.radio-header span:last-child {
+    text-align: left;
 }
 
 .option-row { 
     display: grid; 
-    grid-template-columns: 60px 60px 1fr; 
-    gap: 10px; 
-    padding: 12px 0; 
-    border-bottom: 1px solid #f0f0f0; 
+    grid-template-columns: 55px 55px 1fr; 
+    gap: 12px; 
+    padding: 11px 8px; 
+    border-bottom: 1px solid #f1f5f9; 
     align-items: center; 
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+.option-row:hover {
+    background: #F8FAFC;
+}
+
+.option-row input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin: 0 auto;
+    accent-color: var(--primary);
+    cursor: pointer;
 }
 
 .option-text { 
     text-align: left; 
+    font-size: 13.5px; 
+    color: #334155; 
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Activation / Monetization Box */
+.activation-box { 
+    background: linear-gradient(180deg, #FFFDF8 0%, #FFF9EC 100%); 
+    padding: 24px 20px; 
+    border: 2px dashed rgba(197, 160, 89, 0.6); 
+    border-radius: 16px; 
+    margin: 22px 0; 
+    text-align: center;
+}
+.sparkle-icon {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+.activation-box h3 {
+    margin: 0 0 6px 0;
+    color: #8c6d23;
+    font-size: 17px;
+    font-weight: 800;
+}
+.activation-box p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0 0 14px 0;
+    line-height: 1.45;
+}
+.input-activation {
+    background: white !important;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px !important;
+}
+
+.activation-footer {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+}
+.activation-footer p {
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.btn-wa { 
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #25D366; 
+    color: white; 
+    padding: 10px 20px; 
+    border-radius: 50px; 
+    text-decoration: none; 
+    font-weight: 700; 
     font-size: 13px; 
-    color: #333; 
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 14px rgba(37, 211, 102, 0.28);
+}
+.btn-wa:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 18px rgba(37, 211, 102, 0.36);
+    filter: brightness(1.03);
 }
 
-.progress-bar-container { 
-    width: 100%; 
-    background: #eee; 
-    height: 8px; 
-    border-radius: 4px; 
-    margin-bottom: 25px; 
+/* ==========================================================================
+   FLOATING WHATSAPP BUTTON (GELEMBUNG MELAYANG)
+   ========================================================================== */
+.wa-float-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
 }
 
-#progress-bar { 
-    background: var(--primary); 
-    height: 100%; 
-    width: 0; 
-    transition: 0.4s; 
+.wa-float-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.wa-float-btn:hover {
+    transform: scale(1.05) translateY(-3px);
 }
 
-/* --- SERTIFIKAT STYLING (A4 Landscape) --- */
+.wa-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #FFFFFF;
+    color: #1e293b;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    white-space: nowrap;
+    animation: floatSubtle 3s ease-in-out infinite alternate;
+}
+
+.wa-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--wa-color);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.2);
+    animation: pulseDot 1.5s infinite;
+}
+
+.wa-icon-circle {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 24px rgba(37, 211, 102, 0.4);
+    position: relative;
+}
+
+@keyframes pulseDot {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(37, 211, 102, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+@keyframes floatSubtle {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-3px); }
+}
+
+/* ==========================================================================
+   SERTIFIKAT STYLING (A4 Landscape - Preserved Layout)
+   ========================================================================== */
 #cert-content { 
     width: 1120px; 
     height: 790px; 
@@ -177,7 +490,6 @@ button:hover {
     text-transform: uppercase; 
 }
 
-/* --- RECIPIENT SECTION --- */
 .cert-recipient-section {
     text-align: center;
     position: relative;
@@ -212,13 +524,12 @@ button:hover {
     font-weight: 600;
 }
 
-/* --- MAIN GRID (DIBATASI TINGGINYA) --- */
 .cert-main-grid { 
     display: flex; 
     gap: 20px; 
     position: relative; 
     z-index: 1; 
-    height: 380px; /* MEMAKSA AREA DESKRIPSI TIDAK TURUN KE FOOTER */
+    height: 380px; 
     margin-top: 30px; 
 }
 
@@ -253,10 +564,9 @@ button:hover {
     text-transform: uppercase; 
 }
 
-/* --- FOOTER & SIGNATURE AREA (POSISI ABSOLUT KE BAWAH) --- */
 .cert-footer-section { 
     position: absolute; 
-    bottom: 25px; /* MENURUNKAN SELURUH FOOTER KE TEPI BAWAH KERTAS */
+    bottom: 25px; 
     left: 50px; 
     right: 50px; 
     display: flex; 
@@ -273,7 +583,7 @@ button:hover {
 }
 
 .sig-consultant { 
-    margin-bottom: 95px; /* MEMBERI JARAK LEGA ANTARA TEKS DAN TTD */
+    margin-bottom: 95px; 
     font-size: 13px; 
     color: #666; 
     font-weight: 600; 
@@ -283,7 +593,7 @@ button:hover {
 .sig-image { 
     width: 105px; 
     position: absolute; 
-    bottom: 35px; /* TTD MELAYANG DI ATAS GARIS NAMA */
+    bottom: 35px; 
     left: 50%; 
     transform: translateX(-50%); 
     z-index: 5; 
@@ -308,4 +618,10 @@ button:hover {
     font-weight: 600;
     text-transform: uppercase;
     margin-top: 3px;
+}
+
+/* Responsive Helper */
+@media (max-width: 480px) {
+    .container { padding: 30px 20px; }
+    .wa-badge { display: none; } /* Hanya tampilkan ikon bulat di layar sangat kecil */
 }
