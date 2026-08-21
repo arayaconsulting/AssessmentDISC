@@ -1,11 +1,15 @@
 /**
- * ARAYA CONSULTING - DISC ASSESSMENT ENGINE
- * Script Version: Final Database Sync with Extended Narratives
+ * ARAYA CONSULTING - DUAL-MODE DISC ASSESSMENT ENGINE
+ * Framework: People Map × Position Map (Role & Contribution Oriented)
  * URL: https://script.google.com/macros/s/AKfycbxVdhm2w6T4oSB77liXaV_cCWkWGZTps-HPPcMfsBDEw4f1Ef9AD_u9uFlH9h3D1oiSzQ/exec
  */
 
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxVdhm2w6T4oSB77liXaV_cCWkWGZTps-HPPcMfsBDEw4f1Ef9AD_u9uFlH9h3D1oiSzQ/exec';
 const adminWA = "6285232526003";
+
+// Deteksi Mode dari URL Parameter (?mode=business atau ?mode=sbs)
+const urlParams = new URLSearchParams(window.location.search);
+const isBusinessMode = urlParams.get('mode') === 'business' || urlParams.get('mode') === 'sbs';
 
 const quizQuestions = [
     { question: "1. Saat dihadapkan pada keputusan penting, saya cenderung:", options: [{ text: "Mengambil keputusan cepat dan tegas", type: "D" }, { text: "Berdiskusi dengan orang lain sebelum memutuskan", type: "I" }, { text: "Menimbang perasaan semua pihak terlebih dahulu", type: "S" }, { text: "Menganalisis data dan informasi sebelum memutuskan", type: "C" }] },
@@ -34,43 +38,77 @@ const quizQuestions = [
     { question: "24. Kalau tim tidak kompak, saya akan:", options: [{ text: "Tegur dan ambil alih kendali", type: "D" }, { text: "Bikin games atau candaan", type: "I" }, { text: "Dampingi yang merasa tertekan", type: "S" }, { text: "Identifikasi masalah sistem dan peran", type: "C" }] }
 ];
 
-const fullNarratives = {
+// NARASI 1: MODE BISNIS / PENGUSAHA (SBS CLASS)
+const businessNarratives = {
     "Dominance": {
-        left: `<b>Karakteristik Dasar:</b><br>Individu dengan profil Dominance adalah tipe penggerak yang memiliki fokus sangat kuat pada hasil akhir (result-oriented). Anda dikenal sebagai pribadi yang asertif, mandiri, dan berani mengambil risiko besar demi mencapai visi yang telah ditetapkan. Anda cenderung tidak menyukai hal-hal yang bertele-tele dan lebih menyukai lingkungan kerja yang memberikan otonomi penuh.<br><br>Dalam interaksi sosial, Anda sering tampil sebagai pemimpin alami yang mampu mengambil kendali di tengah ketidakpastian. Motivasi internal Anda digerakkan oleh tantangan dan efisiensi, sehingga Anda sering menjadi katalisator perubahan dalam sebuah organisasi.<br><br><b>Kekuatan & Kelemahan:</b> Anda sangat hebat dalam pengambilan keputusan cepat dan eksekusi lapangan. Namun, Anda perlu waspada terhadap kecenderungan sikap yang terlalu dominan atau kurang sabar terhadap detail.<br><br><b>Saran Pengembangan:</b> Berlatihlah untuk mendengarkan perspektif tim secara mendalam agar ketegasan Anda tidak dianggap intimidasi.`,
+        left: `<b>Karakteristik Dasar:</b><br>Sebagai pengusaha dengan profil Dominance, Anda adalah tipe penggerak visioner yang berfokus penuh pada target akhir (bottom-line results). Anda memiliki determinasi tinggi, menyukai efisiensi, dan berani mengambil risiko besar dalam ekspansi bisnis.<br><br><b>Kekuatan & Tantangan:</b> Sangat unggul dalam kecepatan eksekusi, negosiasi tingkat tinggi, dan mengatasi hambatan pasar. Tantangannya adalah mengendalikan rasa tidak sabar terhadap proses tim dan potensi mengabaikan detail kecil.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Optimal pada peran penentu arah visi, akselerator skala bisnis (scale-up), eksekutor restrukturisasi, dan pengambil keputusan strategis di saat krisis.<br><br><b>Saran Pengembangan:</b> Terapkan sistem delegasi terukur dan latih kesabaran mendengarkan masukan tim agar keberanian Anda tetap didukung oleh eksekusi yang solid.`,
         right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
                 <b>Business & Leadership Insight:</b><br><br>
-                <b>Gaya Kepemimpinan:</b> Pemimpin visioner yang fokus pada target akhir (Bottom-line oriented). Anda sangat efektif dalam situasi krisis yang membutuhkan arah tegas dan cepat. Anda menginspirasi tim melalui standar kerja yang tinggi dan keberanian menghadapi tantangan.<br><br>
-                <b>Gaya Kerja & Kolaborasi:</b> Eksekutor handal dalam proyek baru yang membutuhkan inisiatif tinggi. Anda bekerja paling baik saat diberikan kebebasan untuk menentukan cara kerja sendiri. Dalam tim, Anda berperan sebagai pendorong agar proyek tetap berjalan sesuai jadwal.<br><br>
-                <b>Panduan Komunikasi:</b> Berbicaralah langsung ke inti masalah (to-the-point). Sediakan opsi solusi daripada sekadar laporan masalah, dan fokuslah pada pencapaian nyata serta efisiensi waktu dalam setiap diskusi bisnis.</div>`
+                <b>Gaya Memimpin Bisnis:</b> Direct & Fast-Paced. Anda memimpin dengan ketegasan dan target tinggi. Sangat tangguh dalam membuka pasar baru dan fase perintisan unit bisnis.<br><br>
+                <b>Ekosistem Tim Ideal:</b> Sangat membutuhkan pendamping Compliance untuk kontrol sistem/keuangan dan Steadiness untuk menjaga retensi serta harmoni tim operasional.<br><br>
+                <b>Panduan Komunikasi Bisnis:</b> Sampaikan target secara to-the-point, diskusikan opsi solusi nyata, dan berikan kejelasan wewenang kepada jajaran manajer Anda.</div>`
     },
     "Influence": {
-        left: `<b>Karakteristik Dasar:</b><br>Anda adalah pribadi yang hangat, penuh energi, dan persuasif. Sebagai komunikator alami, Anda mahir memotivasi orang lain melalui ide kreatif dan antusiasme yang menular. Anda sangat menghargai interaksi sosial, pengakuan publik, dan keterlibatan tim dalam setiap kegiatan yang dilakukan.<br><br>Daya tarik utama Anda terletak pada optimisme dan kemampuan membangun jejaring dengan cepat. Anda adalah perekat sosial yang mampu mencairkan ketegangan dalam kelompok. Kehadiran Anda seringkali menjadi inspirasi bagi orang-orang di sekitar untuk berpikir lebih kreatif.<br><br><b>Kekuatan & Kelemahan:</b> Hebat dalam membangun hubungan baru dan presentasi persuasif. Namun, Anda mungkin memiliki tantangan dalam hal disiplin manajemen waktu atau pengerjaan detail administratif yang kaku.<br><br><b>Saran Pengembangan:</b> Tingkatkan disiplin dalam penyelesaian rencana aksi nyata dan cobalah untuk lebih objektif dalam menganalisis fakta sebelum mengambil keputusan besar.`,
+        left: `<b>Karakteristik Dasar:</b><br>Sebagai pengusaha dengan profil Influence, kekuatan terbesar Anda terletak pada karisma, antusiasme, dan kemampuan membangun jejaring kemitraan luas. Anda menggerakkan bisnis melalui optimisme dan komunikasi persuasif.<br><br><b>Kekuatan & Tantangan:</b> Sangat unggul dalam promosi, negosiasi kemitraan, penjualan kreatif, dan membangun budaya kerja menyenangkan. Tantangannya adalah menjaga konsistensi pengerjaan SOP serta detail data administratif.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Optimal pada peran duta brand (brand ambassador), pengembang kemitraan bisnis (business development), penggalangan relasi investor, dan motivator tim penjualan.<br><br><b>Saran Pengembangan:</b> Terapkan akuntabilitas berbasis checklist dan pastikan setiap gagasan kreatif Anda ditopang oleh tim operasional yang disiplin mengeksekusi detail.`,
         right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
                 <b>Business & Leadership Insight:</b><br><br>
-                <b>Gaya Kepemimpinan:</b> Pemimpin inspiratif yang memimpin melalui hubungan personal. Anda menciptakan atmosfer kerja yang menyenangkan dan mendukung kreativitas. Anda sangat baik dalam memberikan apresiasi yang meningkatkan loyalitas tim.<br><br>
-                <b>Gaya Kerja & Kolaborasi:</b> Sangat produktif dalam lingkungan yang mengutamakan kolaborasi dan diskusi ide. Anda adalah aset besar dalam tim pemasaran, humas, atau bagian yang membutuhkan kemampuan negosiasi interpersonal tingkat tinggi.<br><br>
-                <b>Panduan Komunikasi:</b> Gunakan pendekatan yang hangat, santai, and antusias. Berikan ruang yang luas bagi mereka untuk mengekspresikan ide-ide baru, dan sertakan pujian yang tulus atas kontribusi kreatif yang telah mereka berikan.</div>`
+                <b>Gaya Memimpin Bisnis:</b> Inspiratif & People-Centric. Anda membangun loyalitas melalui keterikatan emosional dan apresiasi terbuka, menciptakan budaya kerja kreatif dan dinamis.<br><br>
+                <b>Ekosistem Tim Ideal:</b> Sangat membutuhkan pendamping Compliance untuk menjaga SOP/audit keuangan dan Dominance untuk menjaga fokus penyelesaian target utama.<br><br>
+                <b>Panduan Komunikasi Bisnis:</b> Gunakan pendekatan hangat dan komunikatif, tetapi pastikan seluruh kesepakatan bisnis selalu didokumentasikan secara tertulis.</div>`
     },
     "Steadiness": {
-        left: `<b>Karakteristik Dasar:</b><br>Pilar pendukung organisasi yang tenang, stabil, dan setia. Anda sangat menghargai harmoni, stabilitas emosional, and konsistensi jangka panjang. Anda dikenal sebagai pendengar yang luar biasa and mitra kerja yang kooperatif dalam membantu rekan kerja mencapai kesuksesan bersama.<br><br>Stabilitas emosi membuat Anda mampu bertahan dalam tekanan kerja rutin yang mungkin membosankan bagi profil lain. Anda adalah tipe 'team player' yang sangat bisa diandalkan untuk menjaga keberlangsungan sistem and meredam riak konflik dalam lingkungan internal organisasi.<br><br><b>Kekuatan & Kelemahan:</b> Sabar, loyal, and mampu menjaga kerahasiaan dengan baik. Namun, Anda mungkin merasa kesulitan saat menghadapi perubahan mendadak atau konflik terbuka secara frontal.<br><br><b>Saran Pengembangan:</b> Berlatihlah untuk lebih asertif dalam menyuarakan pendapat pribadi and cobalah untuk lebih terbuka terhadap perubahan spontan yang membawa kemajuan.`,
+        left: `<b>Karakteristik Dasar:</b><br>Sebagai pengusaha dengan profil Steadiness, kekuatan utama Anda adalah ketenangan, loyalitas, dan keandalan dalam menjaga stabilitas organisasi. Anda membangun bisnis jangka panjang dengan fondasi kepercayaan dan proses yang berkelanjutan.<br><br><b>Kekuatan & Tantangan:</b> Sangat unggul dalam menjaga retensi karyawan, membangun relasi pelanggan setia, dan menjaga konsistensi mutu produk. Tantangannya adalah keraguan saat harus melakukan perubahan haluan mendadak.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Optimal pada peran penguatan fondasi internal, pengelolaan SDM, penjaga stabilitas operasional, dan pemelihara hubungan pelanggan inti jangka panjang.<br><br><b>Saran Pengembangan:</b> Latihlah keberanian mengeksekusi keputusan cepat di tengah dinamika pasar dan bersikap lebih asertif dalam menegakkan aturan performa tim.`,
         right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
                 <b>Business & Leadership Insight:</b><br><br>
-                <b>Gaya Kepemimpinan:</b> Pemimpin yang melayani (Servant Leader). Anda memastikan setiap anggota tim merasa aman, didengarkan, and memiliki sumber daya yang cukup. Anda memimpin dengan keteladanan dalam hal kesabaran and ketekunan kerja.<br><br>
-                <b>Gaya Kerja & Kolaborasi:</b> Pekerja tim yang metodis and sangat handal dalam peran dukungan teknis maupun operasional. Anda adalah penjaga ritme kerja yang memastikan semua proses berjalan sesuai prosedur yang stabil tanpa mengorbankan hubungan baik.<br><br>
-                <b>Panduan Komunikasi:</b> Berbicaralah dengan nada yang tenang, ramah, and tulus. Berikan waktu yang cukup bagi mereka untuk memproses informasi baru sebelum menuntut jawaban, and hindari sikap yang terlalu agresif atau mendesak.</div>`
+                <b>Gaya Memimpin Bisnis:</b> Servant Leadership & Stabil. Anda memimpin dengan keteladanan, kesabaran, dan dukungan penuh pada proses kerja. Bisnis Anda umumnya memiliki turnover staf sangat rendah.<br><br>
+                <b>Ekosistem Tim Ideal:</b> Sangat membutuhkan figur Dominance untuk memacu pertumbuhan target dan Influence untuk memperluas penetrasi pasar.<br><br>
+                <b>Panduan Komunikasi Bisnis:</b> Ciptakan komunikasi yang transparan dan aman secara psikologis, berikan waktu bagi tim untuk beradaptasi terhadap pembaharuan sistem.</div>`
     },
     "Compliance": {
-        left: `<b>Karakteristik Dasar:</b><br>Individu analitis yang mendasarkan keputusan pada data and fakta objektif. Anda menghargai struktur, aturan yang jelas, and akurasi tinggi dalam segala hal. Standar kualitas Anda terhadap pekerjaan sangat mendalam, teknis, and presisi.<br><br>Keteraturan and struktur adalah kunci kenyamanan kerja Anda. Dalam tim, Anda sering berperan sebagai penjaga kualitas (quality control) yang memastikan setiap proyek berjalan sesuai standar operasi (SOP). Anda cenderung berhati-hati and sangat mematuhi etika serta regulasi yang berlaku.<br><br><b>Kekuatan & Kelemahan:</b> Sangat teliti dalam perencanaan detail and analisis risiko. Namun, Anda mungkin terjebak dalam 'analysis paralysis' (berpikir terlalu lama) atau menjadi terlalu kritis terhadap kesalahan kecil orang lain.<br><br><b>Saran Pengembangan:</b> Belajarlah untuk lebih fleksibel terhadap perubahan yang bersifat non-strategis and kembangkan komunikasi emosional yang lebih hangat dengan rekan kerja.`,
+        left: `<b>Karakteristik Dasar:</b><br>Sebagai pengusaha dengan profil Compliance, Anda mengelola bisnis berbasis akurasi data, efisiensi sistem, dan standar kualitas tinggi. Anda memastikan tata kelola dan operasional berjalan dengan presisi dan mitigasi risiko matang.<br><br><b>Kekuatan & Tantangan:</b> Sangat unggul dalam rekayasa SOP, analisis rasio keuangan, kontrol mutu produk, dan audit kerja. Tantangannya adalah potensi terjebak analisis berlebih (*overthinking*) sebelum meluncurkan produk.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Optimal pada peran perancang sistem kerja & SOP, pengendalian kualitas (QC), manajemen risiko, tata kelola keuangan, dan restrukturisasi kepatuhan standar bisnis.<br><br><b>Saran Pengembangan:</b> Tingkatkan toleransi terhadap proses eksperimen pasar awal dan bangun komunikasi yang lebih luwes dengan divisi kreatif atau pemasaran.`,
         right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
                 <b>Business & Leadership Insight:</b><br><br>
-                <b>Gaya Kepemimpinan:</b> Pemimpin berbasis sistem yang memastikan organisasi tetap berada pada jalur prosedur yang benar. Anda memimpin dengan logika and fakta, memastikan setiap keputusan didukung oleh bukti and analisis yang kuat.<br><br>
-                <b>Gaya Kerja & Kolaborasi:</b> Ahli dalam manajemen kualitas, keuangan, riset, and perencanaan strategis yang kompleks. Anda bekerja paling baik dalam lingkungan yang tenang di mana ketelitian and keahlian teknis Anda sangat dihargai.<br><br>
-                <b>Panduan Komunikasi:</b> Sediakan data yang akurat, grafik yang jelas, and penjelasan logis yang terstruktur secara formal. Hindari argumen yang hanya berdasarkan perasaan, and berikan mereka waktu untuk melakukan analisis mendalam.</div>`
+                <b>Gaya Memimpin Bisnis:</b> System-Driven & Metodis. Anda memimpin dengan fakta, logika, dan parameter terukur, menjamin bisnis beroperasi efisien dengan margin kesalahan minimal.<br><br>
+                <b>Ekosistem Tim Ideal:</b> Sangat membutuhkan figur Influence untuk relasi publik/pemasaran dan Dominance untuk mendobrak peluang pasar baru secara cepat.<br><br>
+                <b>Panduan Komunikasi Bisnis:</b> Sampaikan evaluasi berbasis data dan indikator objektif tanpa terkesan kaku, serta berikan apresiasi pada pencapaian tim non-teknis.</div>`
+    }
+};
+
+// NARASI 2: MODE REGULER / UMUM (PROSES & LINGKUNGAN KERJA)
+const generalNarratives = {
+    "Dominance": {
+        left: `<b>Karakteristik Dasar:</b><br>Individu dengan profil Dominance adalah tipe penggerak yang berfokus kuat pada pencapaian hasil akhir (result-oriented). Anda dikenal mandiri, asertif, dan menyukai tantangan kerja yang membutuhkan solusi cepat.<br><br><b>Kekuatan & Tantangan:</b> Cepat dalam mengambil keputusan dan tangguh mengatasi tekanan. Waspadai kecenderungan kurang sabar terhadap proses atau detail kerja tim.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Optimal pada peran yang membutuhkan inisiatif tinggi, kepemimpinan proyek, negosiasi kritis, dan pemecahan hambatan kerja.<br><br><b>Saran Pengembangan:</b> Luangkan waktu untuk mendengarkan masukan tim sebelum menetapkan keputusan akhir.`,
+        right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
+                <b>Personal & Leadership Insight:</b><br><br>
+                <b>Gaya Kolaborasi:</b> Cepat, to-the-point, dan berorientasi pada target nyata.<br><br>
+                <b>Panduan Komunikasi:</b> Sampaikan inti pesan secara lugas dan sediakan opsi solusi nyata dalam setiap diskusi.</div>`
+    },
+    "Influence": {
+        left: `<b>Karakteristik Dasar:</b><br>Pribadi yang hangat, energik, dan persuasif. Sebagai komunikator alami, Anda mahir membangun hubungan positif dan menginspirasi rekan kerja melalui gagasan-gagasan kreatif.<br><br><b>Kekuatan & Tantangan:</b> Hebat dalam membangun jejaring dan menghidupkan suasana tim. Tantangan terletak pada manajemen waktu dan ketelitian administratif.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Optimal pada peran komunikasi publik, fasilitator kolaborasi tim, presentasi ide, dan pembina hubungan kemitraan.<br><br><b>Saran Pengembangan:</b> Tingkatkan kedisiplinan pencatatan detail dan susun rencana tindak lanjut yang terstruktur.`,
+        right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
+                <b>Personal & Leadership Insight:</b><br><br>
+                <b>Gaya Kolaborasi:</b> Partisipatif, dinamis, dan membangun suasana kerja antusias.<br><br>
+                <b>Panduan Komunikasi:</b> Berikan apresiasi yang tulus dan sediakan ruang terbuka untuk mengekspresikan gagasan.</div>`
+    },
+    "Steadiness": {
+        left: `<b>Karakteristik Dasar:</b><br>Pilar kestabilan yang tenang, setia, dan konsisten. Anda sangat menghargai kerja sama yang harmonis dan dapat diandalkan dalam menjalankan tugas berkelanjutan secara tekun.<br><br><b>Kekuatan & Tantangan:</b> Pendengar yang luar biasa dan penjaga ritme tim. Tantangannya adalah menghadapi perubahan mendadak atau perselisihan terbuka.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Optimal pada peran pendukung operasional inti, penengah konflik, penjaga mutu layanan, dan eksekutor prosedur kerja teratur.<br><br><b>Saran Pengembangan:</b> Latihlah keberanian menyuarakan pandangan pribadi dan bersikap lebih adaptif terhadap perubahan sistemik.`,
+        right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
+                <b>Personal & Leadership Insight:</b><br><br>
+                <b>Gaya Kolaborasi:</b> Kooperatif, sabar, dan menjaga suasana kerja tetap kondusif.<br><br>
+                <b>Panduan Komunikasi:</b> Berbicaralah dengan tenang dan berikan waktu yang cukup untuk memahami perubahan instruksi kerja.</div>`
+    },
+    "Compliance": {
+        left: `<b>Karakteristik Dasar:</b><br>Individu analitis yang mengutamakan data, logika, dan standar akurasi tinggi. Anda bekerja secara terstruktur, sistematis, dan sangat teliti terhadap kepatuhan prosedur.<br><br><b>Kekuatan & Tantangan:</b> Akurasi sangat tinggi dalam perencanaan teknis dan evaluasi risiko. Tantangannya adalah kehati-hatian berlebih (*over-analyzing*).<br><br><b>Kecenderungan Peran & Kontribusi:</b> Optimal pada peran analisa data, penyusunan standar operasional (SOP), kontrol kualitas (QC), dan audit proses.<br><br><b>Saran Pengembangan:</b> Tingkatkan fleksibilitas terhadap situasi praktis lapangan dan kembangkan komunikasi kerja yang lebih rileks.`,
+        right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
+                <b>Personal & Leadership Insight:</b><br><br>
+                <b>Gaya Kolaborasi:</b> Metodis, objektif, dan mengutamakan ketepatan standar mutu.<br><br>
+                <b>Panduan Komunikasi:</b> Sertakan data pendukung yang valid dan susun penjelasan secara sistematis.</div>`
     }
 };
 
 let currentIdx = 0, userName = "", userPhone = "", scores = { D: 0, I: 0, S: 0, C: 0 }, scoresLeast = { D: 0, I: 0, S: 0, C: 0 }, radarInstance = null;
 
+// Submit Formulir Awal
 document.getElementById('start-form').addEventListener('submit', (e) => {
     e.preventDefault();
     userName = document.getElementById('user-name').value.trim();
@@ -82,68 +120,95 @@ document.getElementById('start-form').addEventListener('submit', (e) => {
 
 function showQuestion() {
     const q = quizQuestions[currentIdx];
-    document.getElementById('question-text').textContent = `(${currentIdx+1}/24) Pilih Paling & Bukan:`;
-    const container = document.getElementById('options-container'); container.innerHTML = '';
+    document.getElementById('question-text').textContent = `(${currentIdx + 1}/24) Pilih Paling & Bukan:`;
+    const container = document.getElementById('options-container'); 
+    container.innerHTML = '';
+    
     q.options.forEach((opt) => {
-        const row = document.createElement('div'); row.className = 'option-row';
+        const row = document.createElement('div'); 
+        row.className = 'option-row';
         row.innerHTML = `<input type="radio" name="most" value="${opt.type}" required> <input type="radio" name="least" value="${opt.type}" required> <span class="option-text">${opt.text}</span>`;
         container.appendChild(row);
     });
     document.getElementById('progress-bar').style.width = `${((currentIdx + 1) / 24) * 100}%`;
 }
 
+// Navigasi Pertanyaan
 document.getElementById('quiz-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const most = document.querySelector('input[name="most"]:checked').value;
     const least = document.querySelector('input[name="least"]:checked').value;
+    
     if (most === least) return alert("Pilihan Paling dan Bukan harus berbeda!");
-    scores[most]++; scoresLeast[l = least]++; currentIdx++;
-    if (currentIdx < 24) showQuestion(); else calculateResult();
+    
+    scores[most]++; 
+    scoresLeast[least]++; 
+    currentIdx++;
+    
+    if (currentIdx < 24) {
+        showQuestion();
+    } else {
+        calculateResult();
+    }
 });
 
+// Perhitungan Skor & Integrasi Database
 async function calculateResult() {
     document.getElementById('quiz-container').classList.add('hidden');
     document.getElementById('result-container').classList.remove('hidden');
     
     let max = -100, dominant = "D";
-    for(let t in scores) { 
+    for (let t in scores) { 
         let final = scores[t] - scoresLeast[t]; 
-        if(final > max) { max = final; dominant = t; } 
+        if (final > max) { max = final; dominant = t; } 
     }
     
-    const fullDom = {D:"Dominance", I:"Influence", S:"Steadiness", C:"Compliance"}[dominant];
-    const testID = "ARAYA-DISC-" + Math.floor(Math.random() * 9000 + 1000);
+    const fullDom = { D: "Dominance", I: "Influence", S: "Steadiness", C: "Compliance" }[dominant];
+    const prefix = isBusinessMode ? "ARAYA-SBS-" : "ARAYA-DISC-";
+    const testID = prefix + Math.floor(Math.random() * 9000 + 1000);
     
-    document.getElementById('result-title').textContent = `Hasil: ${fullDom}`;
-    document.getElementById('result-description').textContent = `Analisis selesai. Silakan hubungi Mas Ali Mahfud untuk mendapatkan Kode Aktivasi sertifikat premium Anda.`;
-    document.getElementById('buy-wa').href = `https://wa.me/${adminWA}?text=Halo%20Mas%20Ali,%20saya%20sudah%20selesai%20tes%20DISC.%20Mohon%20kode%20aktivasi%20sertifikat.%20ID%20saya:%20${testID}`;
+    document.getElementById('result-title').textContent = `Hasil Analisis: ${fullDom}`;
+    document.getElementById('result-description').textContent = isBusinessMode
+        ? `Profil kecenderungan kepemimpinan bisnis Anda telah selesai dianalisis. Masukkan kode aktivasi resmi SBS Class Anda.`
+        : `Analisis profil kepribadian DISC Anda telah selesai. Masukkan kode aktivasi untuk mengunduh sertifikat resmi.`;
+        
+    document.getElementById('buy-wa').href = `https://wa.me/${adminWA}?text=Halo%20Mas%20Ali,%20saya%20sudah%20selesai%20tes%20DISC%20(${isBusinessMode ? 'SBS%20Class' : 'Umum'}).%20Mohon%20kode%20aktivasi%20sertifikat.%20ID%20saya:%20${testID}`;
 
-    // KIRIM KE DATABASE GOOGLE SHEETS
+    // Kirim Data ke Google Sheets
     fetch(scriptURL, {
         method: 'POST',
         mode: 'no-cors',
         body: JSON.stringify({
-            nama: userName, whatsapp: userPhone, hasil: fullDom,
-            skorD: scores.D-scoresLeast.D, skorI: scores.I-scoresLeast.I,
-            skorS: scores.S-scoresLeast.S, skorC: scores.C-scoresLeast.C,
+            nama: userName, 
+            whatsapp: userPhone, 
+            hasil: fullDom + (isBusinessMode ? " (SBS Class)" : " (Umum)"),
+            skorD: scores.D - scoresLeast.D, 
+            skorI: scores.I - scoresLeast.I,
+            skorS: scores.S - scoresLeast.S, 
+            skorC: scores.C - scoresLeast.C,
             id: testID
         })
     });
 
-    // Siapkan data sertifikat
+    // Pemilihan Narasi Sesuai Mode Link
+    const activeNarratives = isBusinessMode ? businessNarratives : generalNarratives;
+
+    // Render Data Sertifikat
     document.getElementById('cert-user-name').textContent = userName.toUpperCase();
     document.getElementById('cert-phone-val').textContent = userPhone;
     document.getElementById('cert-type').textContent = fullDom;
-    document.getElementById('cert-col-left').innerHTML = fullNarratives[fullDom].left;
-    document.getElementById('cert-col-right').innerHTML = fullNarratives[fullDom].right;
+    document.getElementById('cert-col-left').innerHTML = activeNarratives[fullDom].left;
+    document.getElementById('cert-col-right').innerHTML = activeNarratives[fullDom].right;
     document.getElementById('cert-date').textContent = new Date().toLocaleDateString('id-ID');
     document.getElementById('cert-id').textContent = testID;
 }
 
+// Validasi Kode Aktivasi dari Database Spreadsheet
 document.getElementById('unlock-button').onclick = async function() {
     const code = document.getElementById('activation-code').value.trim();
-    if(!code) return alert("Masukkan kode aktivasi!");
-    this.disabled = true; this.textContent = "Validasi...";
+    if (!code) return alert("Masukkan kode aktivasi!");
+    this.disabled = true; 
+    this.textContent = "Memvalidasi...";
 
     try {
         const response = await fetch(scriptURL, {
@@ -153,28 +218,64 @@ document.getElementById('unlock-button').onclick = async function() {
         const result = await response.text();
 
         if (result === "Valid") {
-            alert("Akses Dibuka! Silakan unduh sertifikat premium Anda.");
+            alert("Akses Dibuka! Sertifikat resmi Anda siap diunduh.");
             document.querySelector('.activation-box').classList.add('hidden');
             document.getElementById('download-cert-button').classList.remove('hidden');
-        } else { alert("Maaf, Kode Aktivasi Salah atau tidak sesuai!"); }
-    } catch (e) { alert("Terjadi kesalahan koneksi database."); } finally {
-        this.disabled = false; this.textContent = "Buka Akses Sertifikat";
+        } else { 
+            alert("Kode Aktivasi tidak cocok atau belum terdaftar di sistem."); 
+        }
+    } catch (e) { 
+        alert("Terjadi kendala koneksi saat validasi database."); 
+    } finally {
+        this.disabled = false; 
+        this.textContent = "Buka Akses Sertifikat";
     }
 };
 
+// Cetak Sertifikat ke PDF
 document.getElementById('download-cert-button').onclick = async function() {
-    this.disabled = true; this.textContent = "Mencetak PDF...";
+    this.disabled = true; 
+    this.textContent = "Mencetak PDF...";
+    
     const ctx = document.getElementById('radarChart').getContext('2d');
     if (radarInstance) radarInstance.destroy();
+    
     radarInstance = new Chart(ctx, {
         type: 'radar',
-        data: { labels: ['Dominance', 'Influence', 'Steadiness', 'Compliance'], datasets: [{ data: [scores.D-scoresLeast.D, scores.I-scoresLeast.I, scores.S-scoresLeast.S, scores.C-scoresLeast.C], backgroundColor: 'rgba(26,42,108,0.2)', borderColor: '#1a2a6c', borderWidth: 2 }] },
-        options: { responsive: false, animation: false, scales: { r: { suggestedMin: -10, suggestedMax: 24, ticks: { display: false } } }, plugins: { legend: { display: false } } }
+        data: { 
+            labels: ['Dominance', 'Influence', 'Steadiness', 'Compliance'], 
+            datasets: [{ 
+                data: [
+                    scores.D - scoresLeast.D, 
+                    scores.I - scoresLeast.I, 
+                    scores.S - scoresLeast.S, 
+                    scores.C - scoresLeast.C
+                ], 
+                backgroundColor: 'rgba(26,42,108,0.2)', 
+                borderColor: '#1a2a6c', 
+                borderWidth: 2 
+            }] 
+        },
+        options: { 
+            responsive: false, 
+            animation: false, 
+            scales: { 
+                r: { 
+                    suggestedMin: -10, 
+                    suggestedMax: 24, 
+                    ticks: { display: false } 
+                } 
+            }, 
+            plugins: { legend: { display: false } } 
+        }
     });
+
     await new Promise(r => setTimeout(r, 1000));
     const canvas = await html2canvas(document.getElementById('cert-content'), { scale: 2, useCORS: true });
     const pdf = new jspdf.jsPDF('l', 'mm', 'a4');
     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 297, 210);
     pdf.save(`Sertifikat_DISC_${userName.replace(/\s+/g, '_')}.pdf`);
-    this.disabled = false; this.textContent = "Unduh Sertifikat (PDF)";
+    
+    this.disabled = false; 
+    this.textContent = "Unduh Sertifikat (PDF)";
 };
