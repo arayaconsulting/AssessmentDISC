@@ -1,15 +1,11 @@
 /**
- * ARAYA CONSULTING - DUAL-MODE DISC ASSESSMENT ENGINE
+ * ARAYA CONSULTING - UNIVERSAL DISC ASSESSMENT ENGINE
  * Framework: People Map × Position Map (Role & Contribution Oriented)
  * URL: https://script.google.com/macros/s/AKfycbxVdhm2w6T4oSB77liXaV_cCWkWGZTps-HPPcMfsBDEw4f1Ef9AD_u9uFlH9h3D1oiSzQ/exec
  */
 
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxVdhm2w6T4oSB77liXaV_cCWkWGZTps-HPPcMfsBDEw4f1Ef9AD_u9uFlH9h3D1oiSzQ/exec';
 const adminWA = "6285232526003";
-
-// Deteksi Mode dari URL Parameter (?mode=business atau ?mode=sbs)
-const urlParams = new URLSearchParams(window.location.search);
-const isBusinessMode = urlParams.get('mode') === 'business' || urlParams.get('mode') === 'sbs';
 
 const quizQuestions = [
     { question: "1. Saat dihadapkan pada keputusan penting, saya cenderung:", options: [{ text: "Mengambil keputusan cepat dan tegas", type: "D" }, { text: "Berdiskusi dengan orang lain sebelum memutuskan", type: "I" }, { text: "Menimbang perasaan semua pihak terlebih dahulu", type: "S" }, { text: "Menganalisis data dan informasi sebelum memutuskan", type: "C" }] },
@@ -38,11 +34,10 @@ const quizQuestions = [
     { question: "24. Kalau tim tidak kompak, saya akan:", options: [{ text: "Tegur dan ambil alih kendali", type: "D" }, { text: "Bikin games atau candaan", type: "I" }, { text: "Dampingi yang merasa tertekan", type: "S" }, { text: "Identifikasi masalah sistem dan peran", type: "C" }] }
 ];
 
-// NARASI 1: MODE BISNIS & ORGANISASI (SBS Class & Team Ecosystem)
-// Menggambarkan respon perilaku adaptif di bawah tekanan target & dinamika kerja
-const businessNarratives = {
+// NARASI UNIVERSAL DISC ASSESSMENT
+const fullNarratives = {
     "Dominance": {
-        left: `<b>Karakteristik & Respons Perilaku:</b><br>Dalam menghadapi dinamika lingkungan dan tekanan target, profil Dominance merespons dengan determinasi tinggi, ketegasan, dan dorongan kuat mengendalikan situasi. Memandang tantangan kerja sebagai arena yang menuntut kecepatan eksekusi dan orientasi hasil (bottom-line results).<br><br><b>Kekuatan & Tantangan Respons:</b> Sangat tangguh saat berada di bawah tekanan kritis, piawai mendobrak kebuntuan, dan berani mengambil risiko operasional. Namun, tekanan tinggi dapat memicu respons yang terkesan mendominasi atau kurang sabar terhadap proses tim.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Cenderung optimal pada peran perintis inisiatif baru, penentu target operasional, akselerator skala bisnis, eksekutor restrukturisasi, dan penuntas krisis di lapangan.<br><br><b>Saran Pengembangan:</b> Terapkan komunikasi dua arah yang terbuka dan latih kesabaran mendengarkan masukan tim agar kecepatan eksekusi tetap didukung kesiapan sistem.`,
+        left: `<b>Karakteristik & Respons Perilaku:</b><br>Dalam menghadapi dinamika lingkungan dan tekanan target, profil Dominance merespons dengan determinasi tinggi, ketegasan, dan dorongan kuat mengendalikan situasi. Memandang tantangan kerja sebagai arena yang menuntut kecepatan eksekusi dan orientasi hasil (bottom-line results).<br><br><b>Kekuatan & Tantangan Respons:</b> Sangat tangguh saat berada di bawah tekanan kritis, piawai mendobrak kebuntuan, dan berani mengambil risiko operasional. Namun, tekanan tinggi dapat memicu respons yang terkesan mendominasi atau kurang sabar terhadap proses tim.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Cenderung optimal pada peran perintis inisiatif baru, penentu target operasional, akselerator skala organisasi, eksekutor restrukturisasi, dan penuntas krisis di lapangan.<br><br><b>Saran Pengembangan:</b> Terapkan komunikasi dua arah yang terbuka dan latih kesabaran mendengarkan masukan tim agar kecepatan eksekusi tetap didukung kesiapan sistem.`,
         right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
                 <b>Business & Leadership Insight:</b><br><br>
                 <b>Respons di Bawah Tekanan:</b> Direct & Action-Driven. Mengambil alih kendali dan memangkas birokrasi demi penyelamatan target.<br><br>
@@ -50,7 +45,7 @@ const businessNarratives = {
                 <b>Panduan Komunikasi:</b> Sampaikan arahan secara to-the-point, fokus pada target dan solusi nyata, serta sepakati tenggat waktu eksekusi yang terukur.</div>`
     },
     "Influence": {
-        left: `<b>Karakteristik & Respons Perilaku:</b><br>Dalam merespons dinamika lingkungan dan tuntutan sosial kerja, profil Influence bertindak secara persuasif, komunikatif, dan penuh antusiasme. Menggerakkan ekosistem kerja melalui keterbukaan, optimisme, dan kemampuan interpersonal yang kuat.<br><br><b>Kekuatan & Tantangan Respons:</b> Sangat unggul dalam mencairkan suasana tegang, membangun kepercayaan dengan cepat, dan promosi kreatif. Saat tekanan meningkat, tantangannya adalah potensi menghindari detail data kaku atau inkonsistensi tindak lanjut.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Cenderung optimal pada peran representasi organisasi (PR), komunikasi publik, pengembangan jejaring kemitraan, aktivasi penjualan kreatif, dan pembangun antusiasme tim.<br><br><b>Saran Pengembangan:</b> Terapkan manajemen waktu berbasis checklist terstruktur dan pastikan setiap gagasan kreatif ditindaklanjuti dengan rencana kerja tertulis.`,
+        left: `<b>Karakteristik & Respons Perilaku:</b><br>Dalam merespons dinamika lingkungan dan tuntutan sosial kerja, profil Influence bertindak secara persuasif, komunikatif, dan penuh antusiasme. Menggerakkan ekosistem kerja melalui keterbukaan, optimisme, dan kemampuan interpersonal yang kuat.<br><br><b>Kekuatan & Tantangan Respons:</b> Sangat unggul dalam mencairkan suasana tegang, membangun kepercayaan dengan cepat, dan promosi kreatif. Saat tekanan meningkat, tantangannya adalah potensi menghindari detail data kaku atau inkonsistensi tindak lanjut.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Cenderung optimal pada peran representasi organisasi (PR), komunikasi publik, pengembangan jejaring kemitraan, aktivasi promosi/penjualan kreatif, dan pembangun antusiasme tim.<br><br><b>Saran Pengembangan:</b> Terapkan manajemen waktu berbasis checklist terstruktur dan pastikan setiap gagasan kreatif ditindaklanjuti dengan rencana kerja tertulis.`,
         right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
                 <b>Business & Leadership Insight:</b><br><br>
                 <b>Respons di Bawah Tekanan:</b> Expressive & Relational. Mencari dukungan kolaboratif dan mencairkan ketegangan melalui pendekatan personal.<br><br>
@@ -58,7 +53,7 @@ const businessNarratives = {
                 <b>Panduan Komunikasi:</b> Gunakan pendekatan hangat dan komunikatif, apresiasi ide yang masuk, namun pastikan seluruh kesepakatan didokumentasikan secara rapi.</div>`
     },
     "Steadiness": {
-        left: `<b>Karakteristik & Respons Perilaku:</b><br>Dalam merespons ritme kerja dan organisasi, profil Steadiness mengedepankan kestabilan, kesabaran, dan konsistensi proses. Membangun kebersamaan melalui rasa saling percaya, empati tinggi, dan komitmen menjaga keberlanjutan alur kerja.<br><br><b>Kekuatan & Tantangan Respons:</b> Sangat loyal, tekun menyelesaikan beban kerja rutin, dan handal menjaga stabilitas operasional. Di bawah tekanan perubahan mendadak atau konflik terbuka, respon alaminya cenderung ragu atau lambat mengambil tindakan tegas.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Cenderung optimal pada peran penguatan fondasi operasional, pemeliharaan hubungan pelanggan jangka panjang, manajemen SDM internal, dan penjaga ritme kerja harian.<br><br><b>Saran Pengembangan:</b> Latihlah keberanian menyuarakan opini secara langsung dan bersikap lebih asertif dalam mengambil tindakan pada dinamika baru.`,
+        left: `<b>Karakteristik & Respons Perilaku:</b><br>Dalam merespons ritme kerja dan organisasi, profil Steadiness mengedepankan kestabilan, kesabaran, dan konsistensi proses. Membangun kebersamaan melalui rasa saling percaya, empati tinggi, dan komitmen menjaga keberlanjutan alur kerja.<br><br><b>Kekuatan & Tantangan Respons:</b> Sangat loyal, tekun menyelesaikan beban kerja rutin, dan handal menjaga stabilitas operasional. Di bawah tekanan perubahan mendadak atau konflik terbuka, respon alaminya cenderung ragu atau lambat mengambil tindakan tegas.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Cenderung optimal pada peran penguatan fondasi operasional, pemeliharaan hubungan pelanggan/mitra jangka panjang, manajemen SDM internal, dan penjaga ritme kerja harian.<br><br><b>Saran Pengembangan:</b> Latihlah keberanian menyuarakan opini secara langsung dan bersikap lebih asertif dalam mengambil tindakan pada dinamika baru.`,
         right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
                 <b>Business & Leadership Insight:</b><br><br>
                 <b>Respons di Bawah Tekanan:</b> Patient & Supportive. Menjaga ritme kerja tetap tenang serta melindungi anggota tim dari kepanikan.<br><br>
@@ -72,38 +67,6 @@ const businessNarratives = {
                 <b>Respons di Bawah Tekanan:</b> Analytical & System-Driven. Memeriksa kembali alur prosedur, mengumpulkan bukti logis, dan meminimalkan celah risiko.<br><br>
                 <b>Sinergi Tim Ideal:</b> Sangat memerlukan mitra tipe Influence untuk komunikasi tim yang dinamis dan Dominance untuk mendorong eksekusi ide baru secara cepat.<br><br>
                 <b>Panduan Komunikasi:</b> Sediakan data yang valid, alur penjelasan runtut, dan evaluasi berbasis indikator objektif tanpa terkesan kaku.</div>`
-    }
-};
-
-// NARASI 2: MODE REGULER / UMUM (PROSES & LINGKUNGAN KERJA)
-const generalNarratives = {
-    "Dominance": {
-        left: `<b>Karakteristik & Respons Perilaku:</b><br>Individu dengan profil Dominance adalah tipe penggerak yang berfokus kuat pada pencapaian hasil akhir (result-oriented). Anda dikenal mandiri, asertif, dan menyukai tantangan kerja yang membutuhkan solusi cepat.<br><br><b>Kekuatan & Tantangan Respons:</b> Cepat dalam mengambil keputusan dan tangguh mengatasi tekanan. Waspadai kecenderungan kurang sabar terhadap proses atau detail kerja tim.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Optimal pada peran yang membutuhkan inisiatif tinggi, kepemimpinan proyek, negosiasi kritis, dan pemecahan hambatan kerja.<br><br><b>Saran Pengembangan:</b> Luangkan waktu untuk mendengarkan masukan tim sebelum menetapkan keputusan akhir.`,
-        right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
-                <b>Personal & Leadership Insight:</b><br><br>
-                <b>Gaya Kolaborasi:</b> Cepat, to-the-point, dan berorientasi pada target nyata.<br><br>
-                <b>Panduan Komunikasi:</b> Sampaikan inti pesan secara lugas dan sediakan opsi solusi nyata dalam setiap diskusi.</div>`
-    },
-    "Influence": {
-        left: `<b>Karakteristik & Respons Perilaku:</b><br>Pribadi yang hangat, energik, dan persuasif. Sebagai komunikator alami, Anda mahir membangun hubungan positif dan menginspirasi rekan kerja melalui gagasan-gagasan kreatif.<br><br><b>Kekuatan & Tantangan Respons:</b> Hebat dalam membangun jejaring dan menghidupkan suasana tim. Tantangan terletak pada manajemen waktu dan ketelitian administratif.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Optimal pada peran komunikasi publik, fasilitator kolaborasi tim, presentasi ide, dan pembina hubungan kemitraan.<br><br><b>Saran Pengembangan:</b> Tingkatkan kedisiplinan pencatatan detail dan susun rencana tindak lanjut yang terstruktur.`,
-        right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
-                <b>Personal & Leadership Insight:</b><br><br>
-                <b>Gaya Kolaborasi:</b> Partisipatif, dinamis, dan membangun suasana kerja antusias.<br><br>
-                <b>Panduan Komunikasi:</b> Berikan apresiasi yang tulus dan sediakan ruang terbuka untuk mengekspresikan gagasan.</div>`
-    },
-    "Steadiness": {
-        left: `<b>Karakteristik & Respons Perilaku:</b><br>Pilar kestabilan yang tenang, setia, dan konsisten. Anda sangat menghargai kerja sama yang harmonis dan dapat diandalkan dalam menjalankan tugas berkelanjutan secara tekun.<br><br><b>Kekuatan & Tantangan Respons:</b> Pendengar yang luar biasa dan penjaga ritme tim. Tantangannya adalah menghadapi perubahan mendadak atau perselisihan terbuka.<br><br><b>Kecenderungan Peran & Kontribusi:</b> Optimal pada peran pendukung operasional inti, penengah konflik, penjaga mutu layanan, dan eksekutor prosedur kerja teratur.<br><br><b>Saran Pengembangan:</b> Latihlah keberanian menyuarakan pandangan pribadi dan bersikap lebih adaptif terhadap perubahan sistemik.`,
-        right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
-                <b>Personal & Leadership Insight:</b><br><br>
-                <b>Gaya Kolaborasi:</b> Kooperatif, sabar, dan menjaga suasana kerja tetap kondusif.<br><br>
-                <b>Panduan Komunikasi:</b> Berbicaralah dengan tenang dan berikan waktu yang cukup untuk memahami perubahan instruksi kerja.</div>`
-    },
-    "Compliance": {
-        left: `<b>Karakteristik & Respons Perilaku:</b><br>Individu analitis yang mengutamakan data, logika, dan standar akurasi tinggi. Anda bekerja secara terstruktur, sistematis, dan sangat teliti terhadap kepatuhan prosedur.<br><br><b>Kekuatan & Tantangan Respons:</b> Akurasi sangat tinggi dalam perencanaan teknis dan evaluasi risiko. Tantangannya adalah kehati-hatian berlebih (*over-analyzing*).<br><br><b>Kecenderungan Peran & Kontribusi:</b> Optimal pada peran analisa data, penyusunan standar operasional (SOP), kontrol kualitas (QC), dan audit proses.<br><br><b>Saran Pengembangan:</b> Tingkatkan fleksibilitas terhadap situasi praktis lapangan dan kembangkan komunikasi kerja yang lebih rileks.`,
-        right: `<div style="background:rgba(26,42,108,0.03); padding:12px; border-left:4px solid #c5a059;">
-                <b>Personal & Leadership Insight:</b><br><br>
-                <b>Gaya Kolaborasi:</b> Metodis, objektif, dan mengutamakan ketepatan standar mutu.<br><br>
-                <b>Panduan Komunikasi:</b> Sertakan data pendukung yang valid dan susun penjelasan secara sistematis.</div>`
     }
 };
 
@@ -165,15 +128,15 @@ async function calculateResult() {
     }
     
     const fullDom = { D: "Dominance", I: "Influence", S: "Steadiness", C: "Compliance" }[dominant];
-    const prefix = isBusinessMode ? "ARAYA-SBS-" : "ARAYA-DISC-";
-    const testID = prefix + Math.floor(Math.random() * 9000 + 1000);
+    const testID = "ARAYA-DISC-" + Math.floor(Math.random() * 9000 + 1000);
     
+    // Tampilan Header Hasil Universal
     document.getElementById('result-title').textContent = `Hasil Analisis: ${fullDom}`;
-    document.getElementById('result-description').textContent = isBusinessMode
-        ? `Profil kecenderungan kerja & organisasi Anda telah selesai dianalisis. Masukkan kode aktivasi resmi SBS Class Anda.`
-        : `Analisis profil kepribadian DISC Anda telah selesai. Masukkan kode aktivasi untuk mengunduh sertifikat resmi.`;
-        
-    document.getElementById('buy-wa').href = `https://wa.me/${adminWA}?text=Halo%20Mas%20Ali,%20saya%20sudah%20selesai%20tes%20DISC%20(${isBusinessMode ? 'SBS%20Class' : 'Umum'}).%20Mohon%20kode%20aktivasi%20sertifikat.%20ID%20saya:%20${testID}`;
+    document.getElementById('result-description').textContent = `Analisis profil kepribadian DISC Anda telah selesai. Masukkan kode aktivasi untuk mengunduh sertifikat resmi.`;
+    
+    // Format Pesan WhatsApp: Sederhana langsung memuat Nama (seperti Personality Plus)
+    const waText = encodeURIComponent(`Halo Mas Ali, saya sudah selesai tes DISC dengan nama ${userName}. Saya ingin membeli kode aktivasi untuk mendownload sertifikat.`);
+    document.getElementById('buy-wa').href = `https://wa.me/${adminWA}?text=${waText}`;
 
     // Kirim Data ke Google Sheets
     fetch(scriptURL, {
@@ -182,7 +145,7 @@ async function calculateResult() {
         body: JSON.stringify({
             nama: userName, 
             whatsapp: userPhone, 
-            hasil: fullDom + (isBusinessMode ? " (SBS Class / Tim)" : " (Umum)"),
+            hasil: fullDom,
             skorD: scores.D - scoresLeast.D, 
             skorI: scores.I - scoresLeast.I,
             skorS: scores.S - scoresLeast.S, 
@@ -191,15 +154,12 @@ async function calculateResult() {
         })
     });
 
-    // Pemilihan Narasi Sesuai Mode Link
-    const activeNarratives = isBusinessMode ? businessNarratives : generalNarratives;
-
     // Render Data Sertifikat
     document.getElementById('cert-user-name').textContent = userName.toUpperCase();
     document.getElementById('cert-phone-val').textContent = userPhone;
     document.getElementById('cert-type').textContent = fullDom;
-    document.getElementById('cert-col-left').innerHTML = activeNarratives[fullDom].left;
-    document.getElementById('cert-col-right').innerHTML = activeNarratives[fullDom].right;
+    document.getElementById('cert-col-left').innerHTML = fullNarratives[fullDom].left;
+    document.getElementById('cert-col-right').innerHTML = fullNarratives[fullDom].right;
     document.getElementById('cert-date').textContent = new Date().toLocaleDateString('id-ID');
     document.getElementById('cert-id').textContent = testID;
 }
