@@ -130,11 +130,11 @@ async function calculateResult() {
     const fullDom = { D: "Dominance", I: "Influence", S: "Steadiness", C: "Compliance" }[dominant];
     const testID = "ARAYA-DISC-" + Math.floor(Math.random() * 9000 + 1000);
     
-    // Tampilan Header Hasil Universal
-    document.getElementById('result-title').textContent = `Hasil Analisis: ${fullDom}`;
-    document.getElementById('result-description').textContent = `Analisis profil kepribadian DISC Anda telah selesai. Masukkan kode aktivasi untuk mengunduh sertifikat resmi.`;
+    // Tampilan Sensor Blur Inline & Kunci Seperti Personality Plus
+    document.getElementById('result-title').innerHTML = `Hasil: <span id="blurred-personality" style="filter: blur(7px); -webkit-filter: blur(7px); user-select: none; letter-spacing: 2px; background: rgba(26,42,108,0.1); padding: 2px 12px; border-radius: 4px; display: inline-block;">${fullDom}</span> <span style="font-size: 14px; vertical-align: middle; color: #c5a059;">🔒 Terkunci</span>`;
+    document.getElementById('result-description').textContent = `Halo ${userName}, peta spektrum kepribadian DISC Anda telah terpetakan. Masukkan kode aktivasi untuk membuka hasil lengkap & sertifikat.`;
     
-    // Format Pesan WhatsApp: Sederhana langsung memuat Nama (seperti Personality Plus)
+    // Format Pesan WhatsApp: Langsung menyebutkan nama (seperti Personality Plus)
     const waText = encodeURIComponent(`Halo Mas Ali, saya sudah selesai tes DISC dengan nama ${userName}. Saya ingin membeli kode aktivasi untuk mendownload sertifikat.`);
     document.getElementById('buy-wa').href = `https://wa.me/${adminWA}?text=${waText}`;
 
@@ -180,6 +180,16 @@ document.getElementById('unlock-button').onclick = async function() {
 
         if (result === "Valid") {
             alert("Akses Dibuka! Sertifikat resmi Anda siap diunduh.");
+            
+            // Buka sensor blur dan ubah badge menjadi terbuka
+            let dominant = "D", max = -100;
+            for (let t in scores) { 
+                let final = scores[t] - scoresLeast[t]; 
+                if (final > max) { max = final; dominant = t; } 
+            }
+            const fullDom = { D: "Dominance", I: "Influence", S: "Steadiness", C: "Compliance" }[dominant];
+            document.getElementById('result-title').innerHTML = `Hasil: <span style="color: #1a2a6c; font-weight: bold;">${fullDom}</span> <span style="font-size: 16px; color: #27ae60;">🔓 Terbuka</span>`;
+            
             document.querySelector('.activation-box').classList.add('hidden');
             document.getElementById('download-cert-button').classList.remove('hidden');
         } else { 
