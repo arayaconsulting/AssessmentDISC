@@ -88,18 +88,26 @@ body {
     to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+/* Logo Wrapper: Ditata Center di Atas Secara Mandiri */
 .logo-wrapper {
     background: white;
-    display: inline-flex;
+    display: block;
+    width: fit-content;
+    margin: 0 auto 12px auto;
     padding: 8px 16px;
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
-    margin-bottom: 18px;
 }
-.logo { width: 140px; height: auto; }
+.logo { width: 140px; height: auto; display: block; margin: 0 auto; }
 
 .logo-wrapper-sm { margin-bottom: 10px; }
 .logo-sm { width: 75px; }
+
+/* Container Badge Mode: Memastikan Turun di Bawah Logo */
+#mode-badge-container {
+    display: block;
+    margin-bottom: 14px;
+}
 
 .badge-pill {
     display: inline-block;
@@ -111,7 +119,7 @@ body {
     padding: 5px 14px;
     border-radius: 30px;
     text-transform: uppercase;
-    margin-bottom: 12px;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .badge-success {
@@ -623,5 +631,5 @@ button {
 /* Responsive Helper */
 @media (max-width: 480px) {
     .container { padding: 30px 20px; }
-    .wa-badge { display: none; } /* Hanya tampilkan ikon bulat di layar sangat kecil */
+    .wa-badge { display: none; }
 }
