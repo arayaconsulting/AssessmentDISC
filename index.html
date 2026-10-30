@@ -20,12 +20,18 @@
 
     <!-- 1. INTRO / START CONTAINER -->
     <div class="container glass-card" id="intro-container">
-        <div class="logo-wrapper">
+        <!-- Logo Wrapper (Tengah Atas) -->
+        <div class="logo-wrapper" style="display: block; margin: 0 auto 12px auto;">
             <img src="logo.png" alt="Logo Araya Consulting" class="logo">
         </div>
-        <span class="badge-pill">Self-Discovery & Leadership</span>
+        
+        <!-- Badge Mode (Tepat di Bawah Logo) -->
+        <div id="mode-badge-container" style="display: block; margin-bottom: 14px;">
+            <span id="mode-badge" class="badge-pill" style="display: inline-block;">Mode: Umum & Pengembangan Diri</span>
+        </div>
+
         <h1>Asesmen Kepribadian DISC</h1>
-        <p class="subtitle">Kenali potensi diri, gaya komunikasi, dan kepemimpinan terbaik Anda dalam beberapa menit.</p>
+        <p class="subtitle" id="intro-subtitle">Kenali potensi respon perilaku, gaya komunikasi, dan adaptasi kerja terbaik Anda.</p>
         
         <form id="start-form">
             <div class="input-group">
